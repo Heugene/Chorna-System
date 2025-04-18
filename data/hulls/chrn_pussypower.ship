@@ -1,0 +1,362 @@
+{
+    "hullName": "Pussypower",
+    "hullId": "chrn_pussypower",
+    "hullSize": "CRUISER",
+    "style": "MIDLINE",
+    "spriteName": "graphics/ships/chrn_pussypower.png",
+    "height": 246,
+    "width": 180,
+    "center": [
+        90, 113
+    ],
+    "collisionRadius": 170,
+    "coversColor": "",
+    "shieldCenter": [
+        3, 0
+    ],
+    "shieldRadius": 160,
+    "viewOffset": 0,
+    "builtInMods": [
+        "advancedcore",
+        "distributed_fire_control",
+        "coherer",
+        "fluxshunt",
+        "bdeck",
+        "advanced_ground_support"
+    ],
+    "builtInWeapons": {
+        "WS 008": "chrn_plasma"
+    },
+    "builtInWings": [
+        "vasari_wing",
+        "ophira_wing"
+    ],
+    "builtInModules": null,
+    "weaponSlots": [
+        {
+            "id": "WS 002",
+            "size": "SMALL",
+            "type": "ENERGY",
+            "mount": "TURRET",
+            "arc": 150,
+            "angle": 90,
+            "locations": [
+                      10,       55
+            ]
+        },
+        {
+            "id": "WS 003",
+            "size": "SMALL",
+            "type": "ENERGY",
+            "mount": "TURRET",
+            "arc": 150,
+            "angle": -90,
+            "locations": [
+                      10,      -55
+            ]
+        },
+        {
+            "id": "WS 004",
+            "size": "SMALL",
+            "type": "ENERGY",
+            "mount": "TURRET",
+            "arc": 210,
+            "angle": 130,
+            "locations": [
+                     -70,       48
+            ]
+        },
+        {
+            "id": "WS 005",
+            "size": "SMALL",
+            "type": "ENERGY",
+            "mount": "TURRET",
+            "arc": 210,
+            "angle": 230,
+            "locations": [
+                     -70,      -48
+            ]
+        },
+        {
+            "id": "WS 006",
+            "size": "MEDIUM",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "arc": 220,
+            "angle": 60,
+            "locations": [
+                      63,       50
+            ]
+        },
+        {
+            "id": "WS 007",
+            "size": "MEDIUM",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "arc": 220,
+            "angle": -60,
+            "locations": [
+                      63,      -50
+            ]
+        },
+        {
+            "id": "WS 008",
+            "size": "LARGE",
+            "type": "BUILT_IN",
+            "mount": "TURRET",
+            "arc": 130,
+            "angle": 0,
+            "locations": [
+                      58,        0
+            ]
+        },
+        {
+            "id": "WS 010",
+            "size": "SMALL",
+            "type": "ENERGY",
+            "mount": "TURRET",
+            "arc": 150,
+            "angle": 20,
+            "locations": [
+                      88,     29.5
+            ]
+        },
+        {
+            "id": "WS 011",
+            "size": "SMALL",
+            "type": "ENERGY",
+            "mount": "TURRET",
+            "arc": 150,
+            "angle": -20,
+            "locations": [
+                      88,    -29.5
+            ]
+        },
+        {
+            "id": "WS 000",
+            "size": "MEDIUM",
+            "type": "UNIVERSAL",
+            "mount": "TURRET",
+            "arc": 230,
+            "angle": 0,
+            "locations": [
+                     4.5,        0
+            ]
+        },
+        {
+            "id": "WS 001",
+            "size": "SMALL",
+            "type": "ENERGY",
+            "mount": "TURRET",
+            "renderOrderMod": -1,
+            "arc": 160,
+            "angle": 52,
+            "locations": [
+                   100.5,       43
+            ]
+        },
+        {
+            "id": "WS 009",
+            "size": "SMALL",
+            "type": "ENERGY",
+            "mount": "TURRET",
+            "renderOrderMod": -1,
+            "arc": 160,
+            "angle": -52,
+            "locations": [
+                   100.5,      -43
+            ]
+        },
+        {
+            "id": "WS 012",
+            "size": "MEDIUM",
+            "type": "MISSILE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": 90,
+            "locations": [
+                   -22.5,     54.5
+            ]
+        },
+        {
+            "id": "WS 013",
+            "size": "MEDIUM",
+            "type": "MISSILE",
+            "mount": "TURRET",
+            "arc": 0,
+            "angle": -90,
+            "locations": [
+                   -22.5,    -54.5
+            ]
+        },
+        {
+            "id": "LB 000",
+            "size": "SMALL",
+            "type": "LAUNCH_BAY",
+            "mount": "HIDDEN",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                    90.5,      5.5,
+                      95,     11.5
+            ]
+        },
+        {
+            "id": "LB 001",
+            "size": "MEDIUM",
+            "type": "LAUNCH_BAY",
+            "mount": "HIDDEN",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                    90.5,     -5.5,
+                      95,    -11.5
+            ]
+        }
+    ],
+    "engineSlots": [
+        {
+            "location": [
+                -110, 59
+            ],
+            "length": 48,
+            "width": 12,
+            "angle": 180,
+            "contrailSize": 64,
+            "style": "COLD_GAZE"
+        },
+        {
+            "location": [
+                -111, 48
+            ],
+            "length": 80,
+            "width": 16,
+            "angle": 180,
+            "contrailSize": 64,
+            "style": "COLD_GAZE"
+        },
+        {
+            "location": [
+                -112, 34
+            ],
+            "length": 80,
+            "width": 16,
+            "angle": 180,
+            "contrailSize": 64,
+            "style": "COLD_GAZE"
+        },
+        {
+            "location": [
+                -112, -33
+            ],
+            "length": 80,
+            "width": 16,
+            "angle": 180,
+            "contrailSize": 64,
+            "style": "COLD_GAZE"
+        },
+        {
+            "location": [
+                -111, -47
+            ],
+            "length": 80,
+            "width": 16,
+            "angle": 180,
+            "contrailSize": 64,
+            "style": "COLD_GAZE"
+        },
+        {
+            "location": [
+                -110, -59
+            ],
+            "length": 48,
+            "width": 12,
+            "angle": 180,
+            "contrailSize": 64,
+            "style": "COLD_GAZE"
+        },
+        {
+            "location": [
+                -104, 17
+            ],
+            "length": 80,
+            "width": 20,
+            "angle": 180,
+            "contrailSize": 64,
+            "style": "COLD_GAZE"
+        },
+        {
+            "location": [
+                -104, -16
+            ],
+            "length": 80,
+            "width": 20,
+            "angle": 180,
+            "contrailSize": 64,
+            "style": "COLD_GAZE"
+        },
+        {
+            "location": [
+                44, 67.5
+            ],
+            "length": 18,
+            "width": 8,
+            "angle": 180,
+            "contrailSize": 64,
+            "style": "COLD_GAZE"
+        },
+        {
+            "location": [
+                44, -67.5
+            ],
+            "length": 18,
+            "width": 8,
+            "angle": 180,
+            "contrailSize": 64,
+            "style": "COLD_GAZE"
+        }
+    ],
+    "bounds": [
+              84,     74.5,
+             124,     39.5,
+             125,       26,
+             104,       25,
+             104,      -25,
+        
+             125,      -26,
+             124,    -39.5,
+              84,    -74.5,
+            53.5,    -71.5,
+              44,    -50.5,
+        
+            25.5,    -49.5,
+              15,      -66,
+              -1,      -67,
+             -10,      -46,
+             -31,      -46,
+        
+             -51,      -68,
+             -93,      -81,
+            -107,      -33,
+            -101,      -26,
+            -101,      -10,
+        
+             -80,       -6,
+             -80,        7,
+            -102,       11,
+            -102,       25,
+            -107,       33,
+        
+             -94,       82,
+             -51,       69,
+             -31,       46,
+             -11,       46,
+              -1,       67,
+        
+              16,       66,
+            25.5,     49.5,
+              44,     50.5,
+            53.5,     71.5
+    # 34 points total.
+    ]
+}

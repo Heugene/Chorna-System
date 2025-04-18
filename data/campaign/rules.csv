@@ -1,0 +1,58 @@
+id,trigger,conditions,script,text,options,notes
+"#RULESET_NAME Chorna Rules",,,,,,
+,,,,,,
+# Catherine_Dialogs,,,,,,
+chrn_AskForSuppliesOption,PopulateOptions,"$id == chrn_Catherine",,,"chrn_AskForSupplies: ""Can you give me some supplies?""",
+chrn_AskForSupplies,DialogOptionSelected,"$option == chrn_AskForSupplies","AddCommodity supplies 10
+FireAll PopulateOptions","Here you go",,
+"#END Catherine_Dialogs",,,,,,
+,,,,,,
+# Custom_Start,,,,,,
+,,,,,,
+# New_Game,,,,,,
+ngcModChornaLLC_Start,AddNewGameChoices,,"SetTooltip ngcModChornaLLC ""Every great leader needs a decent fleet to protect its home""","You are the proud CEO of Chorna LLC—the faction that was once bought by the Tri-Tachion corporation but was disappointed by its corporate culture and chose the path to independence. There is an entire star system in the Core Worlds at your disposal (Chorna star system). It has everything you need to become a new major superpower. Moreover, you're given a space station that specialises in refining and heavy industry. There are rumours that it was once a secret site to hold Tri-Tachion's [REDACTED] experiments, so there might be some leftovers floating around.
+
+The real question is, do you have the balls to defend your property and make your way up to the bright future no matter what happens? Good. Since you already have a colony, some mid- to late-game Colony Crisis events may take place very soon. Be sure to spend the time you have to build up your fleet and colony defenses.
+
+Our latest profits were sufficient to provide you with one of the listed starting fleets (Chorna LLC modded start option). Or you can have whatever was left from your previous occupation. So your choice is...","8:ngcModChornaLLC:Become the leader Chorna LLC needs and bring it to prosperity (Chorna LLC modded start)",
+ngcModChornaLLC_fleet,NewGameOptionSelected,"$option == ngcModChornaLLC","$ngcModChornaLLCSelected = true",,"0:ngcModChornaLLC_fleet1: Chorna LLC exploratory task force (Apogee Cruiser as a flagship)
+1:ngcModChornaLLC_fleet2: Chorna LLC mercantile convoy (Aurora Cruiser as a flagship)
+2:ngcModChornaLLC_fleet3: Chorna LLC stealth hunter unit  (Doom Phase Cruiser as a flagship)",
+ngcModChornaLLC_fleet1,NewGameOptionSelected,"$option == ngcModChornaLLC_fleet1","SetTooltip ngcModChornaLLC ""A medium sized Chorna LLC  task force, able to hunt down pirates and do bounty contracts, as well as perform some exploration missions outside the Core Worlds; Consists of an Apogee Cruiser, 2 Shrike Destroyers, 2 Wolf frigates, a Gemini Combat Freighter and a Phaeton Tanker ship. Additionally gain 50 000 Credits and some heavy machinery to cover operational expences. ""
+NGCAddShip apogee_Balanced
+NGCAddShip shrike_Attack
+NGCAddShip shrike_Attack
+NGCAddShip wolf_Starting
+NGCAddShip wolf_Starting
+NGCAddShip gemini_Standard
+NGCAddShip phaeton_Standard
+NGCAddCredits 50000
+NGCAddCargo RESOURCES heavy_machinery 20
+NGCAddCargo RESOURCES supplies 200
+FireAll ngcModChornaLLC_EndOption","A medium sized Chorna LLC  task force, able to hunt down pirates and do bounty contracts, as well as perform some exploration missions outside the Core Worlds; Consists of an Apogee Cruiser, 2 Shrike Destroyers, 2 Wolf frigates, a Gemini Combat Freighter and a Phaeton Tanker ship. Additionally gain 50 000 and some heavy machinery Credits to cover operational expences. ",,
+ngcModChornaLLC_fleet2,NewGameOptionSelected,"$option == ngcModChornaLLC_fleet2","SetTooltip ngcModChornaLLC ""A medium sized  Chorna LLC trading fleet that is able to exploit local shortages by delivering consumer goods, weaponry and some other necessities to markets in need. It also contains some combat ships to secure our prosperous future. Consists of an Aurora Cruiser, a Medusa Destroyer, 3 Omen Frigates and 3 Buffalo Freighters.Additionally gain some commodities to sell and 20 000 Credits to cover operational expences. ""
+NGCAddShip aurora_Attack
+NGCAddShip medusa_PD
+NGCAddShip omen_PD
+NGCAddShip omen_PD
+NGCAddShip omen_PD
+NGCAddShip buffalo_tritachyon_Standard
+NGCAddShip buffalo_tritachyon_Standard
+NGCAddShip buffalo_tritachyon_Standard
+NGCAddCredits 20000
+NGCAddCargo RESOURCES supplies 200
+NGCAddCargo RESOURCES fuel 200
+NGCAddCargo RESOURCES rare_metals 190
+NGCAddCargo RESOURCES heavy_machinery 150
+NGCAddCargo RESOURCES hand_weapons 100
+NGCAddCargo RESOURCES luxury_goods 300
+FireAll ngcModChornaLLC_EndOption","A medium sized  Chorna LLC trading fleet that is able to exploit local shortages by delivering consumer goods, weaponry and some other necessities to markets in need. It also contains some combat ships to secure our prosperous future. Consists of an Aurora Cruiser, a Medusa Destroyer, 3 Omen Frigates and 3 Buffalo Freighters.Additionally gain some commodities to sell and 20 000 Credits to cover operational expences.",,
+ngcModChornaLLC_fleet3,NewGameOptionSelected,"$option == ngcModChornaLLC_fleet3","SetTooltip ngcModChornaLLC ""A tiny, but deadly Chorna LLC hunter unit is basically no joke. In the right hands it can perform terrifying things. Consists of a Doom Phase Cruiser and a Revenant Phase Tender for logistical purposes. Also gain some supplies to maintain your combat readiness.""
+NGCAddShip doom_Attack
+NGCAddShip revenant_Elite
+NGCAddCargo RESOURCES supplies 200
+FireAll ngcModChornaLLC_EndOption","A tiny, but deadly Chorna LLC hunter unit is basically no joke. In the right hands it can perform terrifying things. Consists of a Doom Phase Cruiser and a Revenant Phase Tender for logistical purposes. No additional starting bonuses for this one.",,
+ngcModChornaLLC_End,ngcModChornaLLC_EndOption,,,"End of modded start","0:ngcNormal:Continue",
+"#END New_Game",,,,,,
+"#END Custom_Start",,,,,,
+
