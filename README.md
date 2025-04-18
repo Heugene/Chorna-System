@@ -1,0 +1,2 @@
+# Chorna-System
+Starsector mod
