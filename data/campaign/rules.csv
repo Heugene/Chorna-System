@@ -1,0 +1,209 @@
+id,trigger,conditions,script,text,options,notes
+"#RULESET_NAME Chorna Rules",,,,,,
+,,,,,,
+# Catherine_Dialogs,,,,,,
+chrn_AskForSuppliesOption,,"$id == chrn_Catherine
+$entity.relValue >=20",,,"chrn_AskForSupplies:""Can you give me some supplies?""
+",
+chrn_AskForSupplies,DialogOptionSelected,"$option == chrn_AskForSupplies","AddCommodity supplies 10
+FireAll PopulateOptions","Here you go",,
+chrn_TryToHireOption,PopulateOptions,"$id == chrn_Catherine
+$rel >= 0.80
+$global.threatind_Compensated
+!$chrn_hired",,,"chrn_TryToHireInfo:""Will you be my officer? I will pay generously.""",
+chrn_TryToHireInfo,DialogOptionSelected,"$option == chrn_TryToHireInfo","DoCanAffordCheck 200000.0 chrn_TryToHireConfirm true
+ShowSkills ""chrn_Catherine""","""Well, that is possible, considering your good standing with me and tons of unoccupied time here. I have a modified Medusa-class destroyer in my possession. Additionally, my skillset is quite amazing. I will require average monthly market pay for my qualifications and an extra one-time bonus of 200000 credits upon hiring. Sounds good?","chrn_TryToHireConfirm:Confirm.
+chrn_TryToHireAbort:Perhaps another time.",
+chrn_TryToHireConfirm,DialogOptionSelected,"$option == chrn_TryToHireConfirm
+$player.credits >= 200000
+","AddText ""You cut the comm link after exchanging a few pleasantries.""
+AddOfficerCatherine
+RemoveCommodity credits 200000
+AddCustomShip ""medusa_chrn""
+AddText ""Catherine has been added to your officer list""
+$chrn_hired = true
+UpdateMemory
+ShowDefaultVisual
+EndConversation","Sure",,
+chrn_TryToHireAbort,DialogOptionSelected,"$option == chrn_TryToHireAbort","UpdateMemory
+ShowDefaultVisual
+EndConversation","""Another time then"" $heOrShe said. You cut the comm link after exchanging a few pleasantries.",,
+chrn_afterThreatIndOption,PopulateOptions,"$id == chrn_Catherine
+$global.threatind_started
+$global.threatind_talkedToTheMerc
+!$global.threatind_Compensated",,,"chrn_afterThreatIndStart:""I found your problematic merchant. They mentioned some kind of failed task. Could you please elaborate on that?""",
+chrn_afterThreatIndStart,DialogOptionSelected,"$option == chrn_afterThreatIndStart",,"As you explain details of your encounter, $HeOrShe seems to be rather indifferent to the matter. However, after mentioning the merchant's last words, something seems to have clicked inside their head, as  $HeOrShe starts rapidly typing something on their  Tri-Pad. After a quick pause, $HeOrShe looks tired.
+
+""It was a BIG misunderstanding"", $HeOrShe said and then continued notoriously skimming through data. ""I wasn't informed. Let me contact my division just a minute"". $HeOrShe temporarily disappears and, after a brief pause, continues: ""Considering the importance of this matter and troublesome consequences it led to, I've been given permission to access and disclose some classified data.""
+
+Well, something is totally not right, and you are about to find out what.","chrn_afterThreatIndContinue:Continue",
+chrn_afterThreatIndContinue,DialogOptionSelected,"$option == chrn_afterThreatIndContinue",,"$HeOrShe continues: ""There are some conflicts among our executives considering Chorna LLC's separation, and, although the process was meant to be peaceful and pragmatic, following our legal and financial protocols, some of our higher-rank executives were pretty annoyed by the fact of your company's renewed independence"".
+
+$HeOrShe takes a moment to catch their breath. ""I shall continue the explanation without overexposing sensitive information, in an amount that is adequate for understanding of the problem that occurred. By some undisclosed means some undisclosed Tri-Tachyon representatives found out about your new cruiser prototype of midline design and considered mass-producing it as a threat to Tri-Tachyon geopolitical and economical interests, so they proceeded to take undisclosed but, at this point, obvious measures to secure said interests.""
+
+You finally feel that such obscure explanations are starting to lead to a point..","chrn_afterThreatIndContinue1:Continue",
+chrn_afterThreatIndContinue1,DialogOptionSelected,"$option == chrn_afterThreatIndContinue1",,"$HeOrShe pauses trying to identify your reaction. ""Said executives were acting with good motives towards Tri-Tachyon and can't be really blamed for that by their supervisors. However, failures in such operations lead only to bad diplomatic reputation, additional unplanned expences and extra security risks, which is something to be aware about in their place.""
+
+$HeOrShe skims through some legal text on their Tri-Pad. ""In order to compensate Chorna LLC for lost equipment, sustained prototype damage and lost escorts as well as crew lives, Tri-Tachyon Corporation has issued following reparation options...""
+
+You familiarise yourself with table contents and find out that those options are:
+
+450000 credits + 1x Phantom class phase transport
+or
+400000 credits + 2x Tempest class frigate
+or
+400000 credits + 3x Vigilance class frigate
+or
+300000 credits + 1x Anubis class experimental cruiser
+or
+500000 credits + 1000 Supplies + 200 Heavy machinery","chrn_afterThreatIndComp1: Choose 450000 credits + 1x Phantom class phase transport.
+chrn_afterThreatIndComp2: Choose 400000 credits + 2x Tempest class frigate.
+chrn_afterThreatIndComp3: Choose 400000 credits + 3x Vigilance class frigate.
+chrn_afterThreatIndComp4: Choose 300000 credits + 1x Anubis class experimental cruiser.
+chrn_afterThreatIndComp5: Choose 500000 credits + 1000 Supplies + 200 Heavy machinery.",
+chrn_afterThreatIndComp1,DialogOptionSelected,"$option == chrn_afterThreatIndComp1","AddCredits 450000
+AddCustomShip ""phantom_Elite""","You chose the first option. $HeOrShe taps on their Tri-Pad with a look of resolve. Soon enough, you hear from your crew that reparations have been delivered.
+
+$HeOrShe confirms. ""It's been a troublesome day, right, $playerSirOrMadam $playerLastName""? I will remain here as a Tri-Tachyon envoy in case of some other important matter. You can call me sometimes; I may have some job opportunities and special offers for you. ","chrn_afterThreatIndEnd:Continue",
+chrn_afterThreatIndComp2,DialogOptionSelected,"$option == chrn_afterThreatIndComp2","AddCredits 400000
+AddCustomShip ""tempest_Attack""
+AddCustomShip ""tempest_Attack""","You chose the second option. $HeOrShe taps on their Tri-Pad with a look of resolve. Soon enough, you hear from your crew that reparations have been delivered.
+
+$HeOrShe confirms. ""It's been a troublesome day, right, $playerSirOrMadam $playerLastName""? I will remain here as a Tri-Tachyon envoy in case of some other important matter. You can call me sometimes; I may have some job opportunities and special offers for you. ","chrn_afterThreatIndEnd:Continue",
+chrn_afterThreatIndComp3,DialogOptionSelected,"$option == chrn_afterThreatIndComp3","AddCredits 400000
+AddCustomShip ""vigilance_Support2""
+AddCustomShip ""vigilance_Support2""
+AddCustomShip ""vigilance_Support2""","You chose the third option. $HeOrShe taps on their Tri-Pad with a look of resolve. Soon enough, you hear from your crew that reparations have been delivered.
+
+$HeOrShe confirms. ""It's been a troublesome day, right, $playerSirOrMadam $playerLastName""? I will remain here as a Tri-Tachyon envoy in case of some other important matter. You can call me sometimes; I may have some job opportunities and special offers for you. ","chrn_afterThreatIndEnd:Continue",
+chrn_afterThreatIndComp4,DialogOptionSelected,"$option == chrn_afterThreatIndComp4","AddCredits 300000
+AddCustomShip ""anubis_Standard""","You chose the fourth option. $HeOrShe taps on their Tri-Pad with a look of resolve. Soon enough, you hear from your crew that reparations have been delivered.
+
+$HeOrShe confirms. ""It's been a troublesome day, right, $playerSirOrMadam $playerLastName""? I will remain here as a Tri-Tachyon envoy in case of some other important matter. You can call me sometimes; I may have some job opportunities and special offers for you. ","chrn_afterThreatIndEnd:Continue",
+chrn_afterThreatIndComp5,DialogOptionSelected,"$option == chrn_afterThreatIndComp5","AddCredits 500000
+AddRemoveCommodity supplies 1000
+AddRemoveCommodity heavy_machinery 200","You chose the fifth option. $HeOrShe taps on their Tri-Pad with a look of resolve. Soon enough, you hear from your crew that reparations have been delivered.
+
+$HeOrShe confirms. ""It's been a troublesome day, right, $playerSirOrMadam $playerLastName""? I will remain here as a Tri-Tachyon envoy in case of some other important matter. You can call me sometimes; I may have some job opportunities and special offers for you. ","chrn_afterThreatIndEnd:Continue",
+chrn_afterThreatIndEnd,DialogOptionSelected,"$option == chrn_afterThreatIndEnd","AddText ""Another adventure has come to an end. You have been compensated for inflicted damage and now it is time to think about what to do next. Perhaps, there is a way to mass-produce your new cruiser design?""
+$global.threatind_Compensated = true
+UpdateMemory
+ShowDefaultVisual
+EndConversation
+",,,
+"#END Catherine_Dialogs",,,,,,
+,,,,,,
+# Custom_Start,,,,,,
+,,,,,,
+# New_Game,,,,,,
+ngcModChornaLLC_Start,AddNewGameChoices,,"SetTooltip ngcModChornaLLC ""Every great leader needs a decent fleet to protect its home""","You are the proud CEO of Chorna LLC—the faction that was once bought by the Tri-Tachion corporation but was disappointed by its corporate culture and chose the path to independence. There is an entire star system in the Core Worlds at your disposal (Chorna star system). It has everything you need to become a new major superpower. Moreover, you're given a space station that specialises in refining and heavy industry. There are rumours that it was once a secret site to hold Tri-Tachion's [REDACTED] experiments, so there might be some leftovers floating around.
+
+The real question is, do you have the balls to defend your property and make your way up to the bright future no matter what happens? Good. Since you already have a colony, some mid- to late-game Colony Crisis events may take place very soon. Be sure to spend the time you have to build up your fleet and colony defenses.
+
+And from now your journey continues...","8:ngcModChornaLLC:Become the leader Chorna LLC needs and bring it to prosperity (Chorna LLC modded start)",
+ngcModChornaLLC_fleet,NewGameOptionSelected,"$option == ngcModChornaLLC","SetTooltip ngcModChornaLLC_fleet4 ""Become the captain of an unique prototype cruiser developed by Chorna LLC. The thing is, it was pretty heavily damaged during last Hegemony raid. Will you earn enough cash to bring it to its former glory?.""
+$ngcModChornaLLCSelected = true",,"3:ngcModChornaLLC_fleet4: Chorna LLC damaged cruiser prototype (Unique Heavy Cruiser as a flagship)",
+ngcModChornaLLC_fleet1,NewGameOptionSelected,"$option == ngcModChornaLLC_fleet1","SetTooltip ngcModChornaLLC ""A medium sized Chorna LLC  task force, able to hunt down pirates and do bounty contracts, as well as perform some exploration missions outside the Core Worlds; Consists of an Apogee Cruiser, 2 Shrike Destroyers, 2 Wolf frigates, a Gemini Combat Freighter and a Phaeton Tanker ship. Additionally gain 50 000 Credits and some heavy machinery to cover operational expences. ""
+NGCAddShip apogee_Balanced
+NGCAddShip shrike_Attack
+NGCAddShip shrike_Attack
+NGCAddShip wolf_Starting
+NGCAddShip wolf_Starting
+NGCAddShip gemini_Standard
+NGCAddShip phaeton_Standard
+NGCAddCredits 50000
+NGCAddCargo RESOURCES heavy_machinery 20
+NGCAddCargo RESOURCES supplies 200
+FireAll ngcModChornaLLC_EndOption","A medium sized Chorna LLC  task force, able to hunt down pirates and do bounty contracts, as well as perform some exploration missions outside the Core Worlds; Consists of an Apogee Cruiser, 2 Shrike Destroyers, 2 Wolf frigates, a Gemini Combat Freighter and a Phaeton Tanker ship. Additionally gain 50 000 and some heavy machinery Credits to cover operational expences. ",,
+ngcModChornaLLC_fleet2,NewGameOptionSelected,"$option == ngcModChornaLLC_fleet2","SetTooltip ngcModChornaLLC ""A medium sized  Chorna LLC trading fleet that is able to exploit local shortages by delivering consumer goods, weaponry and some other necessities to markets in need. It also contains some combat ships to secure our prosperous future. Consists of an Aurora Cruiser, a Medusa Destroyer, 3 Omen Frigates and 3 Buffalo Freighters.Additionally gain some commodities to sell and 20 000 Credits to cover operational expences. ""
+NGCAddShip aurora_Attack
+NGCAddShip medusa_PD
+NGCAddShip omen_PD
+NGCAddShip omen_PD
+NGCAddShip omen_PD
+NGCAddShip buffalo_tritachyon_Standard
+NGCAddShip buffalo_tritachyon_Standard
+NGCAddShip buffalo_tritachyon_Standard
+NGCAddCredits 20000
+NGCAddCargo RESOURCES supplies 200
+NGCAddCargo RESOURCES fuel 200
+NGCAddCargo RESOURCES rare_metals 190
+NGCAddCargo RESOURCES heavy_machinery 150
+NGCAddCargo RESOURCES hand_weapons 100
+NGCAddCargo RESOURCES luxury_goods 300
+FireAll ngcModChornaLLC_EndOption","A medium sized  Chorna LLC trading fleet that is able to exploit local shortages by delivering consumer goods, weaponry and some other necessities to markets in need. It also contains some combat ships to secure our prosperous future. Consists of an Aurora Cruiser, a Medusa Destroyer, 3 Omen Frigates and 3 Buffalo Freighters.Additionally gain some commodities to sell and 20 000 Credits to cover operational expences.",,
+ngcModChornaLLC_fleet3,NewGameOptionSelected,"$option == ngcModChornaLLC_fleet3","SetTooltip ngcModChornaLLC ""A tiny, but deadly Chorna LLC hunter unit is basically no joke. In the right hands it can perform terrifying things. Consists of a Doom Phase Cruiser and a Revenant Phase Tender for logistical purposes. Also gain some supplies to maintain your combat readiness.""
+NGCAddShip doom_Attack
+NGCAddShip revenant_Elite
+NGCAddCargo RESOURCES supplies 200
+FireAll ngcModChornaLLC_EndOption","A tiny, but deadly Chorna LLC hunter unit is basically no joke. In the right hands it can perform terrifying things. Consists of a Doom Phase Cruiser and a Revenant Phase Tender for logistical purposes. No additional starting bonuses for this one.",,
+ngcModChornaLLC_fleet4,NewGameOptionSelected,"$option == ngcModChornaLLC_fleet4","NGCAddShip chrn_obriy_starter
+NGCAddCargo RESOURCES supplies 200
+NGCAddCargo RESOURCES fuel 165
+FireAll ngcModChornaLLC_EndOption","You were testing a new midline flagship cruiser prototype called ""Obriy"" but got jumped by Hegemony task force, which didn't seem to like your new ship despite it not being colored in cyanish-blue. You barely managed to get away considering suboptimal test loadout. However, your ship has suffered heavy sustained damage from that encounter. Will you earn enough cash to bring it to its former glory?",,
+ngcModChornaLLC_End,ngcModChornaLLC_EndOption,,,"End of modded start","0:ngcNormal:Continue",
+"#END New_Game",,,,,,
+"#END Custom_Start",,,,,,
+,,,,,,
+"# A THREAT TO INDEPENDENCE,,,,,,",,,,,,
+threatindOptionBar,threatind_optionBar,"$market.id == ""omega_market""
+!$global.threatind_started",,,"threatind_startBar:See what the wine-drinking lady trying to get your attention wants",
+threatindOfferTextBar,DialogOptionSelected,"$option == threatind_startBar","$missionId = threatind","As you take a seat by the mysterious woman, $heOrShe briefly scans you over like a biometrics system, before returning $hisOrHer eyes to the Tri-Pad. ""Oh, Hello, $playerSirOrMadam $playerLastName, I've got quite a business to talk about with you.""
+
+$HeOrShe takes a sip. ""Obviously, as you would have guessed, there is some serious matter to discuss if they sent someone like me to get your attention. My name is Catherine Knight, a modest Tri-Tachyon representative at your service.""
+
+$HeOrShe takes another sip. ""I was assigned to help you recover some information and perhaps even punish someone who might be involved in the recent little accident during combat testing of some mysterious new ship of yours.""","threatind_startBar2:Continue",
+threatindOfferTextBar2,DialogOptionSelected,"$option == threatind_startBar2",,"""We have gathered some intel on that incident and there is a possibility that someone somehow got Hegemony Investigators on you. I mean, isn't is strange that Hegemony attacked your combat testing site although you were not playing with some sweet AI cores and cyanish-blue droneships?""
+
+$HeOrShe takes another sip and looks at you. ""Anyway, said individual seems to be nothing more than a minor private trader. Perhaps with your modest tariff policy you managed to step on someone's toes. However, we would like you to go and search for clues yourself. That merchant has some unresolved business with us as well, so that's a win-win situation. And before you ask, we have not done that already by ourselves simply because issuing a separate task force to resolve a low-priority matter is bureacracy hell.""","threatind_startBar3:Continue",
+threatindOfferTextBar3,DialogOptionSelected,"$option == threatind_startBar3","SetTextHighlights  $threatind_systemName $threatind_dist $threatind_reward","""The prey in question is $threatind_mercName, a private trade fleet operator. I'm sure you're well aware of the trouble they might have caused,"" $heOrShe explains, waving $hisOrHer hand. ""I have orders to ensure this merchant is 'dealt with', and I'd rather not inconvenience myself by going up the hierarchy to request a fleet asset. You know how it is."" $HeOrShe gives you a look that implies you're expected to agree.
+
+""$threatind_mercName's last known location was the $threatind_systemName, $threatind_dist light-years away from here. You should start your search there. I haven't been provided intel on the target's composition, so you're going in blind. But as I said, it is known to be a minor trader, so a cruiser or two with escorts will be more than enough. Accordingly, I've arranged a payment of $threatind_reward credits.""
+
+$HeOrShe places the Tri-Pad face-down on the table, and gives you $hisOrHer full attention for the first time. ""What about it, then? If you can get this done, it'd make an excellent first impression.""","contact_acceptBar:Accept
+contact_declineBarNoContinue:Decline",
+,,,,,,
+threatindFoundClueShip,ShowSalvageEntityDetails,"$threatind_clue score:100
+$customType == wreck
+Call $threatind_ref updateData","$global.threatind_foundclue = true
+Call $global.threatind_ref updateStage
+Call $global.threatind_ref unsetClues
+$global.threatind_started = true","Though obviously stripped for supplies and materials, a scant few signals can still be detected from the derelict ship's dying systems. It could not have been abandoned too long ago.
+
+A salvage crew is dispatched, and manage to extract partial fleet logs from a functioning server that record inter-fleet communications discussing a stop in the $threatind_system2Name. $threatind_mercName's fleet should be there.",,
+threatindFoundClueCache,ShowSalvageEntityDetails,"$threatind_clue score:100
+$customType == supply_cache
+Call $threatind_ref updateData","$global.threatind_foundclue = true
+Call $global.threatind updateStage
+Call $global.threatind unsetClues
+$global.threatind_started = true","Barely weathered by the usual radiation and impacts of microscopic particles that pose a hazard to exposed cargo pods, it's obvious this supply cache has not been left here for long.
+
+Quick scans manage to pick up a fading signal from one in particular, and once broken open, a Tri-Pad found inside soon yields a fleetwide memo received by $threatind_mercName's captains, ordering a stop in the $threatind_system2Name.",,
+,,,,,,
+threatind_fleetOpen,OpenCommLink,"$entity.threatind_mercfleet score:100","$entity.ignorePlayerCommRequests = true
+$global.threatind_talkedToTheMerc = true
+$global.threatind_started = true","$personName frowns. ""They didn't even bother sending a fleet of their own, huh... I guess receiving a separate task force for elimination is too much of an honor for mercenaries who fail their task..""
+
+$HeOrShe sighs. ""Tell them I did what I could. I only wish I'd done it better.""
+
+$personName's fleet assumes a combat formation. It looks like they thought you were here to eliminate them for some kind of failure. You wonder what kind of failure could lead to such a punishment but are unable to reestablish the comm link.","cutCommLink:Cut the comm link",
+"#END A THREAT TO INDEPENDENCE,,,,,,",,,,,,
+,,,,,,
+# BP_Production,,,,,,
+BP_CommHighlight,PopulateOptions,"$market.id == ""omega_market""
+$global.daysSinceStart > 366
+!$global.BP_Aquired","SetOptionColor marketCommDir highlight",,,
+BP_AcquireOption,PopulateOptions,"$market.id == ""omega_market""
+$postId == ""baseCommander""
+$global.daysSinceStart > 366
+!$global.BP_Aquired",,"After a short moment, the comm link has been established. The Omega site commander looks somewhat proud of himself. You wonder why. 
+
+""We have finished analysing combat data obtained during Obriy prototype combat tests and a later ambush. We are ready to present you our mass production blueprint for the Obriy-class heavy cruiser.""","BP_Acquire:""So the project is finished?""",
+BP_Acquire,DialogOptionSelected," $option == BP_Acquire","AddBlueprint ""chrn_obriy""
+$global.BP_Aquired = true
+AddTextSmall ""The Obriy-class heavy cruiser blueprint is added to your inventory."" highlight
+UpdateMemory
+ShowDefaultVisual
+EndConversation","""Yeah, pretty much. With this warship our faction might stand a chance against ongoing and future hostilities. Thanks for your sponsorship for the project.""",,
+"#END BP_Production",,,,,,
+

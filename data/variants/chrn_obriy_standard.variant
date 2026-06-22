@@ -1,0 +1,68 @@
+{
+    "displayName": "Custom",
+    "fluxCapacitors": 22,
+    "fluxVents": 21,
+    "goalVariant": false,
+    "hullId": "chrn_obriy",
+    "hullMods": [
+        "advancedshieldemitter",
+        "auxiliarythrusters",
+        "armoredweapons",
+        "hardenedshieldemitter",
+        "autorepair"
+    ],
+    "quality": 0.0,
+    "variantId": "chrn_obriy_custom",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 003": "chrn_lancer_barrage"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 011": "hephag"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 005": "salamanderpod",
+                "WS 004": "salamanderpod"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 002": "railgun",
+                "WS 000": "railgun",
+                "WS 001": "railgun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 009": "vulcan",
+                "WS 010": "vulcan"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 006": "dualflak"
+            }
+        }
+    ],
+    "wings": [
+        "thunder_wing",
+        "thunder_wing"
+    ]
+}

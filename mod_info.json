@@ -1,0 +1,9 @@
+{
+	"id":"MODChornaSystem",
+	"name":"Chorna System",
+	"version":"1.0.0",
+	"description":"Adds a nice unclaimed system to the Core worlds for colonization",
+	"gameVersion":"0.98a-RC5",
+	"jars":["jars/ChornaSystem.jar"],
+	"modPlugin":"data.scripts.ChornaSystem_modPlugin"
+}

@@ -1,0 +1,290 @@
+{
+    "hullName": "Obriy",
+    "hullId": "chrn_obriy",
+    "hullSize": "CRUISER",
+    "style": "MIDLINE",
+    "spriteName": "graphics/ships/chrn_obriy.png",
+    "height": 304,
+    "width": 158,
+    "center": [
+        79, 152
+    ],
+    "collisionRadius": 180,
+    "coversColor": "",
+    "shieldCenter": [
+        0, 0
+    ],
+    "shieldRadius": 180,
+    "viewOffset": 0,
+    "builtInMods": [
+        "advancedcore",
+        "chrn_battlecarrier_logistics",
+        "defensive_targeting_array"
+    ],
+    "builtInWeapons": {
+        "WS 003": "chrn_lancer_barrage"
+    },
+    "builtInWings": [],
+    "builtInModules": null,
+    "weaponSlots": [
+        {
+            "id": "WS 000",
+            "size": "SMALL",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "arc": 160,
+            "angle": 0,
+            "locations": [
+                     105,        0
+            ]
+        },
+        {
+            "id": "WS 001",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "arc": 152,
+            "angle": 48,
+            "locations": [
+                      88,       33
+            ]
+        },
+        {
+            "id": "WS 002",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "arc": 152,
+            "angle": -48,
+            "locations": [
+                      88,      -33
+            ]
+        },
+        {
+            "id": "WS 003",
+            "size": "LARGE",
+            "type": "BUILT_IN",
+            "mount": "HARDPOINT",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                     129,        0
+            ]
+        },
+        {
+            "id": "WS 004",
+            "size": "MEDIUM",
+            "type": "SYNERGY",
+            "mount": "TURRET",
+            "arc": 200,
+            "angle": 68,
+            "locations": [
+                    47.5,       42
+            ]
+        },
+        {
+            "id": "WS 005",
+            "size": "MEDIUM",
+            "type": "SYNERGY",
+            "mount": "TURRET",
+            "arc": 200,
+            "angle": 292,
+            "locations": [
+                    47.5,      -42
+            ]
+        },
+        {
+            "id": "WS 006",
+            "size": "MEDIUM",
+            "type": "HYBRID",
+            "mount": "TURRET",
+            "arc": 236,
+            "angle": 0,
+            "locations": [
+                      69,        0
+            ]
+        },
+        {
+            "id": "WS 009",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "arc": 217,
+            "angle": 100,
+            "locations": [
+                     -53,       47
+            ]
+        },
+        {
+            "id": "WS 010",
+            "size": "SMALL",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "arc": 217,
+            "angle": -100,
+            "locations": [
+                     -53,      -47
+            ]
+        },
+        {
+            "id": "WS 011",
+            "size": "LARGE",
+            "type": "BALLISTIC",
+            "mount": "TURRET",
+            "arc": 244,
+            "angle": 0,
+            "locations": [
+                     -18,        0
+            ]
+        },
+        {
+            "id": "LB 000",
+            "size": "SMALL",
+            "type": "LAUNCH_BAY",
+            "mount": "HIDDEN",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                     -25,      -43,
+                   -19.5,      -54,
+                   -31.5,      -53
+            ]
+        },
+        {
+            "id": "LB 001",
+            "size": "SMALL",
+            "type": "LAUNCH_BAY",
+            "mount": "HIDDEN",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                     -25,       43,
+                   -31.5,       53,
+                   -19.5,       54
+            ]
+        }
+    ],
+    "engineSlots": [
+        {
+            "location": [
+                -148.5, 39
+            ],
+            "length": 50,
+            "width": 8,
+            "angle": 180,
+            "contrailSize": 12,
+            "style": "MIDLINE"
+        },
+        {
+            "location": [
+                -148.5, -39
+            ],
+            "length": 50,
+            "width": 8,
+            "angle": 180,
+            "contrailSize": 12,
+            "style": "MIDLINE"
+        },
+        {
+            "location": [
+                -141, 21.5
+            ],
+            "length": 70,
+            "width": 12,
+            "angle": 180,
+            "contrailSize": 16,
+            "style": "MIDLINE"
+        },
+        {
+            "location": [
+                -141, -21.5
+            ],
+            "length": 70,
+            "width": 12,
+            "angle": 180,
+            "contrailSize": 16,
+            "style": "MIDLINE"
+        },
+        {
+            "location": [
+                -136, 6
+            ],
+            "length": 46,
+            "width": 8,
+            "angle": 180,
+            "contrailSize": 12,
+            "style": "MIDLINE"
+        },
+        {
+            "location": [
+                -136, -6
+            ],
+            "length": 46,
+            "width": 8,
+            "angle": 180,
+            "contrailSize": 12,
+            "style": "MIDLINE"
+        }
+    ],
+    "bounds": [
+          -131.5,      -13,
+          -137.5,    -14.5,
+            -139,    -30.5,
+            -145,    -35.5,
+            -145,    -42.5,
+        
+          -139.5,    -45.5,
+            -135,      -52,
+          -106.5,    -61.5,
+             -99,    -62.5,
+           -92.5,    -56.5,
+        
+           -45.5,    -68.5,
+             -38,    -65.5,
+             -14,    -65.5,
+              -7,    -68.5,
+             2.5,      -61,
+        
+              10,    -60.5,
+            15.5,    -65.5,
+            36.5,    -68.5,
+              78,      -54,
+             133,    -40.5,
+        
+             144,      -34,
+           145.5,    -19.5,
+           145.5,     19.5,
+             144,       34,
+             133,     40.5,
+        
+              78,       54,
+              76,     57.5,
+            36.5,     68.5,
+            32.5,     65.5,
+            15.5,     65.5,
+        
+              10,     60.5,
+             2.5,       61,
+              -7,     68.5,
+             -11,     68.5,
+             -14,     65.5,
+        
+             -38,     65.5,
+           -40.5,     68.5,
+           -45.5,     68.5,
+           -92.5,     56.5,
+             -99,     62.5,
+        
+          -106.5,     61.5,
+            -135,       52,
+          -134.5,     47.5,
+          -139.5,     45.5,
+            -145,     42.5,
+        
+            -145,     35.5,
+            -139,     30.5,
+          -137.5,     14.5,
+          -131.5,       13
+    # 49 points total.
+    ]
+}

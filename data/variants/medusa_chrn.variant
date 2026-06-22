@@ -1,0 +1,49 @@
+{
+    "displayName": "Chorna",
+    "fluxCapacitors": 5,
+    "fluxVents": 20,
+    "goalVariant": false,
+    "hullId": "medusa",
+    "hullMods": [],
+    "permaMods": [
+        "fluxshunt",
+        "chrn_vanometric_conductor",
+        "coherer"
+    ],
+    "sMods": [
+        "reinforcedhull",
+        "frontemitter",
+        "extendedshieldemitter"
+    ],
+    "quality": 0.0,
+    "variantId": "medusa_chrn",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 007": "heavyblaster",
+                "WS 006": "heavyblaster"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 008": "minipulser",
+                "WS 009": "minipulser"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 002": "shockrepeater",
+                "WS 001": "shockrepeater",
+                "WS 005": "shockrepeater",
+                "WS 003": "shockrepeater",
+                "WS 004": "shockrepeater"
+            }
+        }
+    ]
+}

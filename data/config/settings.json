@@ -1,0 +1,10 @@
+{
+  "graphics":{
+    "planets":{
+      "mod_ignea": "graphics/mod/planets/mod_ignea.jpg",
+      "mod_yaroslava": "graphics/mod/planets/mod_yaroslava.jpg",
+	  "mod_donbass": "graphics/mod/planets/mod_donbass.jpg",
+	  "mod_iskemar": "graphics/mod/planets/mod_iskemar.jpg",
+    }
+  }
+}
