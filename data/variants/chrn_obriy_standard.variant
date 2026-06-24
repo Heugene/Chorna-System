@@ -1,8 +1,8 @@
 {
-    "displayName": "Custom",
+    "displayName": "Standard",
     "fluxCapacitors": 22,
-    "fluxVents": 21,
-    "goalVariant": false,
+    "fluxVents": 25,
+    "goalVariant": true,
     "hullId": "chrn_obriy",
     "hullMods": [
         "advancedshieldemitter",
@@ -11,7 +11,7 @@
         "hardenedshieldemitter",
         "autorepair"
     ],
-    "quality": 0.0,
+    "quality": 1.0,
     "variantId": "chrn_obriy_custom",
     "weaponGroups": [
         {
@@ -32,25 +32,25 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS 005": "salamanderpod",
-                "WS 004": "salamanderpod"
+                "WS 004": "salamanderpod",
+                "WS 005": "salamanderpod"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS 002": "railgun",
+                "WS 001": "railgun",
                 "WS 000": "railgun",
-                "WS 001": "railgun"
+                "WS 002": "railgun"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS 009": "vulcan",
-                "WS 010": "vulcan"
+                "WS 010": "vulcan",
+                "WS 009": "vulcan"
             }
         },
         {
@@ -62,7 +62,7 @@
         }
     ],
     "wings": [
-        "thunder_wing",
-        "thunder_wing"
+        "gladius_wing",
+        "gladius_wing"
     ]
 }

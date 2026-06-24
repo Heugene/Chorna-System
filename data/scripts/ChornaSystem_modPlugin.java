@@ -64,7 +64,9 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
     @Override
     public void onGameLoad(boolean newGame) {
         super.onGameLoad(newGame);
-        SetRelations();
+        if (newGame) {
+            SetRelations();
+        }
     }
 
     private void SetRelations() {

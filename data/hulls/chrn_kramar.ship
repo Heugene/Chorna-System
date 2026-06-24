@@ -17,8 +17,9 @@
     "shieldRadius": 150,
     "viewOffset": 0,
     "builtInMods": [
-        "insulatedengine",
-        "surveying_equipment"
+        "surveying_equipment",
+        "repair_gantry",
+        "insulatedengine"
     ],
     "builtInWeapons": {
         "WS 000": "devastator"
