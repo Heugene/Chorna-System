@@ -146,7 +146,7 @@ ngcModChornaLLC_End,ngcModChornaLLC_EndOption,,,"End of modded start","0:ngcNorm
 "#END Custom_Start",,,,,,
 ,,,,,,
 "# A THREAT TO INDEPENDENCE,,,,,,",,,,,,
-threatindOptionBar,threatind_optionBar,"$market.id == ""omega_market""
+threatindOptionBar,threatind_optionBar,"$market.id == ""chorna_starforge_market""
 !$global.threatind_started",,,"threatind_startBar:See what the wine-drinking lady trying to get your attention wants",
 threatindOfferTextBar,DialogOptionSelected,"$option == threatind_startBar","$missionId = threatind","As you take a seat by the mysterious woman, $heOrShe briefly scans you over like a biometrics system, before returning $hisOrHer eyes to the Tri-Pad. ""Oh, Hello, $playerSirOrMadam $playerLastName, I've got quite a business to talk about with you.""
 
@@ -190,13 +190,13 @@ $personName's fleet assumes a combat formation. It looks like they thought you w
 "#END A THREAT TO INDEPENDENCE,,,,,,",,,,,,
 ,,,,,,
 # BP_Production,,,,,,
-BP_CommHighlight,PopulateOptions,"$market.id == ""omega_market""
+BP_CommHighlight,PopulateOptions,"$market.id == ""chorna_starforge_market""
 $global.daysSinceStart > 366
 !$global.BP_Aquired","SetOptionColor marketCommDir highlight",,,
-BP_AcquireOption,PopulateOptions,"$market.id == ""omega_market""
+BP_AcquireOption,PopulateOptions,"$market.id == ""chorna_starforge_market""
 $postId == ""baseCommander""
 $global.daysSinceStart > 366
-!$global.BP_Aquired",,"After a short moment, the comm link has been established. The Omega site commander looks somewhat proud of himself. You wonder why. 
+!$global.BP_Aquired",,"After a short moment, the comm link has been established. The Chorna Starforge commander looks somewhat proud of himself. You wonder why.
 
 ""We have finished analysing combat data obtained during Obriy prototype combat tests and a later ambush. We are ready to present you our mass production blueprint for the Obriy-class heavy cruiser.""","BP_Acquire:""So the project is finished?""",
 BP_Acquire,DialogOptionSelected," $option == BP_Acquire","AddBlueprint ""chrn_obriy""

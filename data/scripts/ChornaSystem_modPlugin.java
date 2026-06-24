@@ -4,29 +4,23 @@ import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.MarketImmigrationModifier;
-import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.*;
-import com.fs.starfarer.api.impl.campaign.events.OfficerManagerEvent;
 import com.fs.starfarer.api.impl.campaign.ids.*;
 
 //for planets
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.EconomyAPI;
-import com.fs.starfarer.api.impl.campaign.intel.bar.events.BarEventManager;
 import com.fs.starfarer.api.impl.campaign.population.PopulationComposition;
 import com.fs.starfarer.api.impl.campaign.procgen.StarAge;
 import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
-import com.fs.starfarer.api.loading.ContactTagSpec;
 
 import java.awt.*;
-import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 public class ChornaSystem_modPlugin extends BaseModPlugin {
 
     public static PersonAPI corporatePrincess;
-    public static MarketAPI omega_market;
+    public static MarketAPI chorna_starforge_market;
     private static SectorAPI sector;
     private static FactionAPI playerFaction;
     private static StarSystemAPI system;
@@ -85,7 +79,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
     private void CreateCatherine() {
         ImportantPeopleAPI importantPeople = Global.getSector().getImportantPeople();
 
-        MarketAPI market = Global.getSector().getEconomy().getMarket("omega_market");
+        MarketAPI market = Global.getSector().getEconomy().getMarket("chorna_starforge_market");
         if (market != null) {
             corporatePrincess = Global.getFactory().createPerson();
             corporatePrincess.setId("chrn_Catherine");
@@ -128,6 +122,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         playerFaction.addKnownShip("gemini", true);
         playerFaction.addKnownShip("falcon", true);
         playerFaction.addKnownShip("shrike", true);
+        playerFaction.addKnownShip("chrn_kramar", true);
     }
 
     private void GenerateChornaSystem() {
@@ -162,58 +157,58 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         system.addAsteroidBelt(star, 100, 8000, 500, 100, 190, Terrain.ASTEROID_BELT, "Outer Ring");
         system.addRingBand(star, "misc", "rings_ice0", 256f, 0, Color.white, 1300f, 8100, 225f, null, null);
 
-        CreateOmegaSite();
+        CreateChornaStarforge();
         CreateIgneaPlanet();
         CreateTwinPlanets();
 
     }
 
-    private void CreateOmegaSite() {
+    private void CreateChornaStarforge() {
 
-        // Omega site
-        SectorEntityToken omega_site = system.addCustomEntity("omega_site", "Omega site", "station_hightech3", "player");
-        omega_site.setCircularOrbitPointingDown(system.getEntityById("chorna"), 270, 3720, 312);
-        omega_site.setInteractionImage("illustrations", "urban02");
+        // Chorna Starforge
+        SectorEntityToken chorna_starforge = system.addCustomEntity("chorna_starforge", "Chorna Starforge", "station_hightech3", "player");
+        chorna_starforge.setCircularOrbitPointingDown(system.getEntityById("chorna"), 270, 3720, 312);
+        chorna_starforge.setInteractionImage("illustrations", "urban02");
 
-        omega_market = Global.getFactory().createMarket("omega_market", omega_site.getName(), 5);
-        omega_market.setPrimaryEntity(omega_site);
-        omega_site.setMarket(omega_market);
+        chorna_starforge_market = Global.getFactory().createMarket("chorna_starforge_market", chorna_starforge.getName(), 5);
+        chorna_starforge_market.setPrimaryEntity(chorna_starforge);
+        chorna_starforge.setMarket(chorna_starforge_market);
 
-        omega_market.setSurveyLevel(MarketAPI.SurveyLevel.FULL);
-        omega_market.getTariff().modifyFlat("generator", 0.25f);
+        chorna_starforge_market.setSurveyLevel(MarketAPI.SurveyLevel.FULL);
+        chorna_starforge_market.getTariff().modifyFlat("generator", 0.25f);
 
-        omega_market.setPlanetConditionMarketOnly(false);
-        omega_market.addCondition(Conditions.HABITABLE);
-        omega_market.addCondition(Conditions.NO_ATMOSPHERE);
-        omega_market.addCondition(Conditions.OUTPOST);
-        omega_market.addCondition(Conditions.POPULATION_5);
+        chorna_starforge_market.setPlanetConditionMarketOnly(false);
+        chorna_starforge_market.addCondition(Conditions.HABITABLE);
+        chorna_starforge_market.addCondition(Conditions.NO_ATMOSPHERE);
+        chorna_starforge_market.addCondition(Conditions.OUTPOST);
+        chorna_starforge_market.addCondition(Conditions.POPULATION_5);
 
-        omega_market.setFactionId(Factions.PLAYER);
+        chorna_starforge_market.setFactionId(Factions.PLAYER);
 
-        omega_market.addIndustry(Industries.POPULATION);
-        omega_market.addIndustry(Industries.SPACEPORT);
-        omega_market.addIndustry(Industries.STARFORTRESS_HIGH);
-        omega_market.addIndustry(Industries.MILITARYBASE);
-        omega_market.addIndustry(Industries.HEAVYINDUSTRY);
-        omega_market.addIndustry(Industries.REFINING);
+        chorna_starforge_market.addIndustry(Industries.POPULATION);
+        chorna_starforge_market.addIndustry(Industries.SPACEPORT);
+        chorna_starforge_market.addIndustry(Industries.STARFORTRESS_HIGH);
+        chorna_starforge_market.addIndustry(Industries.MILITARYBASE);
+        chorna_starforge_market.addIndustry(Industries.HEAVYINDUSTRY);
+        chorna_starforge_market.addIndustry(Industries.REFINING);
 
-        omega_market.addSubmarket(Submarkets.SUBMARKET_STORAGE);
-        omega_market.addSubmarket(Submarkets.SUBMARKET_BLACK);
-        omega_market.addSubmarket(Submarkets.SUBMARKET_OPEN);
+        chorna_starforge_market.addSubmarket(Submarkets.SUBMARKET_STORAGE);
+        chorna_starforge_market.addSubmarket(Submarkets.SUBMARKET_BLACK);
+        chorna_starforge_market.addSubmarket(Submarkets.SUBMARKET_OPEN);
 
         EconomyAPI globalEconomy = Global.getSector().getEconomy();
-        globalEconomy.addMarket(omega_market, false);
+        globalEconomy.addMarket(chorna_starforge_market, false);
 
-        omega_market.addImmigrationModifier(new MarketImmigrationModifier() {
+        chorna_starforge_market.addImmigrationModifier(new MarketImmigrationModifier() {
             @Override
             public void modifyIncoming(MarketAPI market, PopulationComposition incoming) {
 
                 incoming.add("size maxed", 0);
-                incoming.getWeight().modifyMult("size maxed", 0, "The Omega site station cannot sustain more people.");
+                incoming.getWeight().modifyMult("size maxed", 0, "The Chorna Starforge station cannot sustain more people.");
             }
         });
         
-        omega_market.setPlayerOwned(true);
+        chorna_starforge_market.setPlayerOwned(true);
     }
 
     private void CreateIgneaPlanet() {
@@ -402,37 +397,6 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
                 true, // whether to use custom or system-name based names
                 false); // whether to allow habitable worlds
     }
-    private boolean CreateDonbassPlanet(byte variant) {
-        // Donbass planet
-        PlanetAPI donbass;
 
-        switch (variant) {
-            case 0: {
-                donbass = system.addPlanet("donbass", star, "Donbass", "barren-bombarded", 150, 160, 6600, 380);  //id, focus, name, type (starsector-core\data\config\planets.json), angle, radius, orbit radius, orbit days
-                donbass.getSpec().setTexture(Global.getSettings().getSpriteName("planets", "mod_donbass")); //graphics\mod\planets\mod_donbass.jpg
-                donbass.applySpecChanges();
-            }
-            break;
-
-            default: {
-                return false;
-            }
-        }
-
-        // Donbass Conditions
-        MarketAPI donbass_market = Global.getFactory().createMarket("donbass_market", donbass.getName(), 0);
-        donbass_market.setPlanetConditionMarketOnly(true);
-        donbass_market.addCondition(Conditions.COLD);
-        donbass_market.addCondition(Conditions.POOR_LIGHT);
-        donbass_market.addCondition(Conditions.ORE_MODERATE);
-        donbass_market.addCondition(Conditions.RARE_ORE_MODERATE);
-        donbass_market.addCondition(Conditions.VOLATILES_PLENTIFUL);
-        donbass_market.addCondition(Conditions.LOW_GRAVITY);
-        donbass_market.addCondition(Conditions.THIN_ATMOSPHERE);
-        donbass_market.setPrimaryEntity(donbass);
-        donbass.setMarket(donbass_market);
-
-        return true;
-    }
 }
 
