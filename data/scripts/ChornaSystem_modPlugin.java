@@ -180,6 +180,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         chorna_starforge_market.setPlanetConditionMarketOnly(false);
         chorna_starforge_market.addCondition(Conditions.HABITABLE);
         chorna_starforge_market.addCondition(Conditions.NO_ATMOSPHERE);
+        chorna_starforge_market.addCondition(Conditions.VERY_HOT);
         chorna_starforge_market.addCondition(Conditions.OUTPOST);
         chorna_starforge_market.addCondition(Conditions.POPULATION_5);
 
