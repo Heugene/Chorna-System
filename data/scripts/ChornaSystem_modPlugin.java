@@ -158,7 +158,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         system.addRingBand(star, "misc", "rings_ice0", 256f, 0, Color.white, 1300f, 8100, 225f, null, null);
 
         CreateChornaStarforge();
-        CreateIgneaPlanet();
+        // CreateIgneaPlanet();
         CreateTwinPlanets();
 
     }
