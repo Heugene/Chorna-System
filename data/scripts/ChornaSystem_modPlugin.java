@@ -3,6 +3,7 @@ package data.scripts;
 import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
+import com.fs.starfarer.api.campaign.econ.MarketImmigrationModifier;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.*;
 import com.fs.starfarer.api.impl.campaign.events.OfficerManagerEvent;
@@ -12,6 +13,7 @@ import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.EconomyAPI;
 import com.fs.starfarer.api.impl.campaign.intel.bar.events.BarEventManager;
+import com.fs.starfarer.api.impl.campaign.population.PopulationComposition;
 import com.fs.starfarer.api.impl.campaign.procgen.StarAge;
 import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
 import com.fs.starfarer.api.loading.ContactTagSpec;
@@ -173,7 +175,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         omega_site.setCircularOrbitPointingDown(system.getEntityById("chorna"), 270, 3720, 312);
         omega_site.setInteractionImage("illustrations", "urban02");
 
-        omega_market = Global.getFactory().createMarket("omega_market", omega_site.getName(), 4);
+        omega_market = Global.getFactory().createMarket("omega_market", omega_site.getName(), 5);
         omega_market.setPrimaryEntity(omega_site);
         omega_site.setMarket(omega_market);
 
@@ -184,7 +186,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         omega_market.addCondition(Conditions.HABITABLE);
         omega_market.addCondition(Conditions.NO_ATMOSPHERE);
         omega_market.addCondition(Conditions.OUTPOST);
-        omega_market.addCondition(Conditions.POPULATION_4);
+        omega_market.addCondition(Conditions.POPULATION_5);
 
         omega_market.setFactionId(Factions.PLAYER);
 
@@ -202,6 +204,15 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         EconomyAPI globalEconomy = Global.getSector().getEconomy();
         globalEconomy.addMarket(omega_market, false);
 
+        omega_market.addImmigrationModifier(new MarketImmigrationModifier() {
+            @Override
+            public void modifyIncoming(MarketAPI market, PopulationComposition incoming) {
+
+                incoming.add("size maxed", 0);
+                incoming.getWeight().modifyMult("size maxed", 0, "The Omega site station cannot sustain more people.");
+            }
+        });
+        
         omega_market.setPlayerOwned(true);
     }
 
