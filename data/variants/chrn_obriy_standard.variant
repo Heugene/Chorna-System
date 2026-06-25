@@ -12,7 +12,7 @@
         "autorepair"
     ],
     "quality": 1.0,
-    "variantId": "chrn_obriy_custom",
+    "variantId": "chrn_obriy_standard",
     "weaponGroups": [
         {
             "autofire": false,

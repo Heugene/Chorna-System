@@ -1,0 +1,13 @@
+{
+	"combatLarge":{
+		
+		"chrn_obriy_standard":5,
+	},
+
+	"combatFreighterLarge":{
+		"chrn_kramar_standard":4,
+		"fallback":{"combatFreighterMedium":1},
+	},
+
+	
+}
