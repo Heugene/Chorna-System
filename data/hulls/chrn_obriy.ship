@@ -17,7 +17,8 @@
     "shieldRadius": 180,
     "viewOffset": 0,
     "builtInMods": [
-        "dedicated_targeting_core"
+        "dedicated_targeting_core",
+        "heavyarmor"
     ],
     "builtInWeapons": {
         "WS 000": "chrn_lancer_barrage"
