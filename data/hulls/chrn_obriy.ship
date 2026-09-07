@@ -18,7 +18,7 @@
     "viewOffset": 0,
     "builtInMods": [
         "dedicated_targeting_core",
-        "heavyarmor"
+        "blast_doors"
     ],
     "builtInWeapons": {
         "WS 000": "chrn_lancer_barrage"
