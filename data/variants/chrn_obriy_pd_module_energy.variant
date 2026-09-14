@@ -1,0 +1,19 @@
+{
+    "displayName": "Energy",
+    "fluxCapacitors": 0,
+    "fluxVents": 0,
+    "goalVariant": false,
+    "hullId": "chrn_obriy_pd_module",
+    "hullMods": [],
+    "quality": 0.0,
+    "variantId": "chrn_obriy_pd_module_energy",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 000": "heavyburst"
+            }
+        }
+    ]
+}

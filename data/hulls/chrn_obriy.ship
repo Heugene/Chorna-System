@@ -20,27 +20,24 @@
         "dedicated_targeting_core",
         "blast_doors"
     ],
-    "builtInWeapons": {
-        "WS 000": "chrn_lancer_barrage"
-    },
     "builtInWings": [],
     "builtInModules": null,
     "weaponSlots": [
         {
             "id": "WS 000",
-            "size": "LARGE",
-            "type": "BUILT_IN",
+            "size": "MEDIUM",
+            "type": "MISSILE",
             "mount": "HARDPOINT",
-            "arc": 0,
+            "arc": 10,
             "angle": 0,
             "locations": [
-                     129,        0
+                     133,        0
             ]
         },
         {
             "id": "WS 001",
             "size": "SMALL",
-            "type": "ENERGY",
+            "type": "BALLISTIC",
             "mount": "TURRET",
             "arc": 152,
             "angle": 48,
@@ -51,7 +48,7 @@
         {
             "id": "WS 002",
             "size": "SMALL",
-            "type": "ENERGY",
+            "type": "BALLISTIC",
             "mount": "TURRET",
             "arc": 152,
             "angle": -48,
@@ -62,7 +59,7 @@
         {
             "id": "WS 003",
             "size": "SMALL",
-            "type": "ENERGY",
+            "type": "BALLISTIC",
             "mount": "TURRET",
             "arc": 160,
             "angle": 0,
@@ -73,7 +70,7 @@
         {
             "id": "WS 004",
             "size": "MEDIUM",
-            "type": "BALLISTIC",
+            "type": "HYBRID",
             "mount": "TURRET",
             "arc": 200,
             "angle": 68,
@@ -84,7 +81,7 @@
         {
             "id": "WS 005",
             "size": "MEDIUM",
-            "type": "BALLISTIC",
+            "type": "HYBRID",
             "mount": "TURRET",
             "arc": 200,
             "angle": 292,
@@ -95,7 +92,7 @@
         {
             "id": "WS 006",
             "size": "MEDIUM",
-            "type": "BALLISTIC",
+            "type": "HYBRID",
             "mount": "TURRET",
             "arc": 236,
             "angle": 0,
@@ -105,10 +102,10 @@
         },
         {
             "id": "WS 007",
-            "size": "MEDIUM",
-            "type": "UNIVERSAL",
-            "mount": "TURRET",
-            "arc": 190,
+            "size": "LARGE",
+            "type": "STATION_MODULE",
+            "mount": "HARDPOINT",
+            "arc": 0,
             "angle": 270,
             "locations": [
                      -25,      -56
@@ -116,10 +113,10 @@
         },
         {
             "id": "WS 008",
-            "size": "MEDIUM",
-            "type": "UNIVERSAL",
-            "mount": "TURRET",
-            "arc": 190,
+            "size": "LARGE",
+            "type": "STATION_MODULE",
+            "mount": "HARDPOINT",
+            "arc": 0,
             "angle": 90,
             "locations": [
                      -25,       56
@@ -130,7 +127,7 @@
             "size": "LARGE",
             "type": "BALLISTIC",
             "mount": "TURRET",
-            "arc": 244,
+            "arc": 210,
             "angle": 0,
             "locations": [
                      -18,        0
@@ -245,6 +242,26 @@
             "angle": 180,
             "contrailSize": 12,
             "style": "MIDLINE"
+        },
+        {
+            "location": [
+                8, 65
+            ],
+            "length": 24,
+            "width": 8,
+            "angle": 142.5,
+            "contrailSize": 128,
+            "style": "MIDLINE"
+        },
+        {
+            "location": [
+                8, -65
+            ],
+            "length": 24,
+            "width": 8,
+            "angle": 217.5,
+            "contrailSize": 128,
+            "style": "MIDLINE"
         }
     ],
     "bounds": [
@@ -260,20 +277,26 @@
              -99,    -62.5,
            -92.5,    -56.5,
         
-           -45.5,    -68.5,
-             -38,    -65.5,
-             -14,    -65.5,
-              -7,    -68.5,
-             2.5,      -61,
+           -39.5,    -68.5,
+           -39.5,    -45.5,
+             -32,    -39.5,
+             -19,    -39.5,
+             -11,    -45.5,
         
+           -10.5,      -67,
+            -6.5,      -68,
+             2.5,      -61,
               10,    -60.5,
             15.5,    -65.5,
+        
             36.5,    -68.5,
               78,      -54,
              133,    -40.5,
-        
              144,      -34,
            145.5,    -19.5,
+        
+             134,     -8.5,
+             134,      8.5,
            145.5,     19.5,
              144,       34,
              133,     40.5,
@@ -286,26 +309,27 @@
         
               10,     60.5,
              2.5,       61,
-              -7,     68.5,
-             -11,     68.5,
-             -14,     65.5,
+            -6.5,       68,
+           -10.5,       67,
+             -11,     45.5,
         
-             -38,     65.5,
-           -40.5,     68.5,
-           -45.5,     68.5,
+             -19,     39.5,
+             -32,     39.5,
+           -39.5,     45.5,
+           -39.5,     68.5,
            -92.5,     56.5,
-             -99,     62.5,
         
+             -99,     62.5,
           -106.5,     61.5,
             -135,       52,
           -134.5,     47.5,
           -139.5,     45.5,
-            -145,     42.5,
         
+            -145,     42.5,
             -145,     35.5,
             -139,     30.5,
           -137.5,     14.5,
           -131.5,       13
-    # 49 points total.
+    # 55 points total.
     ]
 }
