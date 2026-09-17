@@ -19,6 +19,8 @@ import java.util.Random;
 
 public class ChornaSystem_modPlugin extends BaseModPlugin {
 
+    public static boolean startWithAColony = true;
+
     public static PersonAPI corporatePrincess;
     public static MarketAPI chorna_starforge_market;
     private static SectorAPI sector;
@@ -37,18 +39,20 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
 
     @Override
     public void onNewGame() {
-
         sector = Global.getSector();
-        GenerateChornaSystem();
+
+        if (startWithAColony) {
+            GenerateChornaSystem();
+            GenerateExtraEntities();
+            system.autogenerateHyperspaceJumpPoints(false, true); //gas giant = false, fringe = false / generates star gravity well
+        }
         SetPlayerFaction();
-        GenerateExtraEntities();
-
-        system.autogenerateHyperspaceJumpPoints(false, true); //gas giant = false, fringe = false / generates star gravity well
-
     }
 
     public void onNewGameAfterEconomyLoad() {
-        CreateCatherine();
+        if (startWithAColony) {
+            CreateCatherine();
+        }
     }
 
     /**
@@ -60,7 +64,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
     @Override
     public void onGameLoad(boolean newGame) {
         super.onGameLoad(newGame);
-        if (newGame) {
+        if (newGame && startWithAColony) {
             SetRelations();
         }
     }
@@ -123,6 +127,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         playerFaction.addKnownShip("falcon", true);
         playerFaction.addKnownShip("shrike", true);
         playerFaction.addKnownShip("chrn_kramar", true);
+        playerFaction.addKnownShip("chrn_obriy", true);
     }
 
     private void GenerateChornaSystem() {

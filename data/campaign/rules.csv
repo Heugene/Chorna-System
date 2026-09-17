@@ -96,13 +96,16 @@ EndConversation
 # Custom_Start,,,,,,
 ,,,,,,
 # New_Game,,,,,,
-ngcModChornaLLC_Start,AddNewGameChoices,,"SetTooltip ngcModChornaLLC ""Every great leader needs a decent fleet to protect its home""","You are the proud CEO of Chorna LLC—the faction that was once bought by the Tri-Tachion corporation but was disappointed by its corporate culture and chose the path to independence. There is an entire star system in the Core Worlds at your disposal (Chorna star system). It has everything you need to become a new major superpower. Moreover, you're given a space station that specialises in refining and heavy industry. There are rumours that it was once a secret site to hold Tri-Tachion's [REDACTED] experiments, so there might be some leftovers floating around.
+ngcModChornaLLC_Start,AddNewGameChoices,,"SetTooltip ngcModChornaLLC ""Every great leader needs a decent fleet to protect its home""
+SetTooltip ngcModChornaLLC_Without ""You will get access to modded ships without a starting colony""",,"7:ngcModChornaLLC:Become the leader Chorna LLC needs and bring it to prosperity (Chorna LLC modded start with a colony)
+8:ngcModChornaLLC_Without:You are interested in finding your own home (Chorna LLC modded start without a colony)",
+ngcModChornaLLC_WithoutAColony,NewGameOptionSelected,"$option == ngcModChornaLLC_Without","SetStartWithoutAColony",,"3:ngcModChornaLLC_fleet5: Chorna LLC freighter cruiser prototype (Modded freighter as a flagship)",
+ngcModChornaLLC_fleet,NewGameOptionSelected,"$option == ngcModChornaLLC","SetTooltip ngcModChornaLLC_fleet4 ""Become the captain of an unique prototype cruiser developed by Chorna LLC. The thing is, it was pretty heavily damaged during last Hegemony raid. Will you earn enough cash to bring it to its former glory?.""
+$ngcModChornaLLCSelected = true","You are the proud CEO of Chorna LLC—the faction that was once bought by the Tri-Tachion corporation but was disappointed by its corporate culture and chose the path to independence. There is an entire star system in the Core Worlds at your disposal (Chorna star system). It has everything you need to become a new major superpower. Moreover, you're given a space station that specialises in refining and heavy industry. There are rumours that it was once a secret site to hold Tri-Tachion's [REDACTED] experiments, so there might be some leftovers floating around.
 
 The real question is, do you have the balls to defend your property and make your way up to the bright future no matter what happens? Good. Since you already have a colony, some mid- to late-game Colony Crisis events may take place very soon. Be sure to spend the time you have to build up your fleet and colony defenses.
 
-And from now your journey continues...","8:ngcModChornaLLC:Become the leader Chorna LLC needs and bring it to prosperity (Chorna LLC modded start)",
-ngcModChornaLLC_fleet,NewGameOptionSelected,"$option == ngcModChornaLLC","SetTooltip ngcModChornaLLC_fleet4 ""Become the captain of an unique prototype cruiser developed by Chorna LLC. The thing is, it was pretty heavily damaged during last Hegemony raid. Will you earn enough cash to bring it to its former glory?.""
-$ngcModChornaLLCSelected = true",,"3:ngcModChornaLLC_fleet4: Chorna LLC damaged cruiser prototype (Unique Heavy Cruiser as a flagship)",
+And from now your journey continues...","3:ngcModChornaLLC_fleet4: Chorna LLC damaged cruiser prototype (Unique Heavy Cruiser as a flagship)",
 ngcModChornaLLC_fleet1,NewGameOptionSelected,"$option == ngcModChornaLLC_fleet1","SetTooltip ngcModChornaLLC ""A medium sized Chorna LLC  task force, able to hunt down pirates and do bounty contracts, as well as perform some exploration missions outside the Core Worlds; Consists of an Apogee Cruiser, 2 Shrike Destroyers, 2 Wolf frigates, a Gemini Combat Freighter and a Phaeton Tanker ship. Additionally gain 50 000 Credits and some heavy machinery to cover operational expences. ""
 NGCAddShip apogee_Balanced
 NGCAddShip shrike_Attack
@@ -141,6 +144,10 @@ ngcModChornaLLC_fleet4,NewGameOptionSelected,"$option == ngcModChornaLLC_fleet4"
 NGCAddCargo RESOURCES supplies 200
 NGCAddCargo RESOURCES fuel 165
 FireAll ngcModChornaLLC_EndOption","You were testing a new midline flagship cruiser prototype called ""Obriy"" but got jumped by Hegemony task force, which didn't seem to like your new ship despite it not being colored in cyanish-blue. You barely managed to get away considering suboptimal test loadout. However, your ship has suffered heavy sustained damage from that encounter. Will you earn enough cash to bring it to its former glory?",,
+ngcModChornaLLC_fleet5,NewGameOptionSelected,"$option == ngcModChornaLLC_fleet5","NGCAddShip chrn_kramar_standard
+NGCAddCargo RESOURCES supplies 200
+NGCAddCargo RESOURCES fuel 165
+FireAll ngcModChornaLLC_EndOption","You get a modded freighter!!! Yay.",,
 ngcModChornaLLC_End,ngcModChornaLLC_EndOption,,,"End of modded start","0:ngcNormal:Continue",
 "#END New_Game",,,,,,
 "#END Custom_Start",,,,,,
