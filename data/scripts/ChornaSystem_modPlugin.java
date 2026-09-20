@@ -55,11 +55,9 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
     @Override
     public void onNewGameAfterProcGen()
     {
-        if (startWithAColony) {
-            GenerateChornaSystem();
-            GenerateExtraEntities();
-            system.autogenerateHyperspaceJumpPoints(false, true); //gas giant = false, fringe = false / generates star gravity well
-        }
+        GenerateChornaSystem(startWithAColony);
+        GenerateExtraEntities();
+        system.autogenerateHyperspaceJumpPoints(false, true); //gas giant = false, fringe = false / generates star gravity well
     }
 
     public void onNewGameAfterEconomyLoad() {
@@ -143,7 +141,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         playerFaction.addKnownShip("chrn_obriy", true);
     }
 
-    private void GenerateChornaSystem() {
+    private void GenerateChornaSystem(boolean startWithAColony) {
         system = sector.createStarSystem("Chorna");
         Random r = new Random();
 
@@ -192,16 +190,17 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         system.addAsteroidBelt(star, 100, 8000, 500, 100, 190, Terrain.ASTEROID_BELT, "Outer Ring");
         system.addRingBand(star, "misc", "rings_ice0", 256f, 0, Color.white, 1300f, 8100, 225f, null, null);
 
-        CreateChornaStarforge();
+        CreateChornaStarforge(startWithAColony);
         // CreateIgneaPlanet();
         CreateTwinPlanets();
 
     }
 
-    private void CreateChornaStarforge() {
-
+    private void CreateChornaStarforge(boolean startWithAColony) {
         // Chorna Starforge
-        SectorEntityToken chorna_starforge = system.addCustomEntity("chorna_starforge", "Chorna Starforge", "station_hightech3", "player");
+        String factionId = startWithAColony ? "player" : Factions.INDEPENDENT;
+
+        SectorEntityToken chorna_starforge = system.addCustomEntity("chorna_starforge", "Chorna Starforge", "station_hightech3", factionId);
         chorna_starforge.setCircularOrbitPointingDown(system.getEntityById("chorna"), 270, 3720, 312);
         chorna_starforge.setInteractionImage("illustrations", "urban02");
 
@@ -244,7 +243,8 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
             }
         });
         
-        chorna_starforge_market.setPlayerOwned(true);
+        chorna_starforge_market.setFactionId(factionId);
+        chorna_starforge_market.setPlayerOwned(startWithAColony);
     }
 
     private void CreateIgneaPlanet() {
