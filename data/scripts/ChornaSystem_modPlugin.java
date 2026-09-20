@@ -11,13 +11,21 @@ import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.EconomyAPI;
 import com.fs.starfarer.api.impl.campaign.population.PopulationComposition;
+
+//for system generation
+import com.fs.starfarer.api.impl.campaign.procgen.Constellation;
 import com.fs.starfarer.api.impl.campaign.procgen.StarAge;
 import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
+import com.fs.starfarer.api.util.Misc;
+import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
 import java.util.Random;
+import java.util.List;
 
 public class ChornaSystem_modPlugin extends BaseModPlugin {
+
+    final Vector2f DEFAULT_CHORNA_SYSTEM_LOCATION = new Vector2f(-750, -5250);
 
     public static boolean startWithAColony = true;
 
@@ -41,12 +49,17 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
     public void onNewGame() {
         sector = Global.getSector();
 
+        SetPlayerFaction();
+    }
+
+    @Override
+    public void onNewGameAfterProcGen()
+    {
         if (startWithAColony) {
             GenerateChornaSystem();
             GenerateExtraEntities();
             system.autogenerateHyperspaceJumpPoints(false, true); //gas giant = false, fringe = false / generates star gravity well
         }
-        SetPlayerFaction();
     }
 
     public void onNewGameAfterEconomyLoad() {
@@ -132,14 +145,31 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
 
     private void GenerateChornaSystem() {
         system = sector.createStarSystem("Chorna");
+        Random r = new Random();
+
+        Constellation constellation = Utils.getNearestConstellation(Misc.getCoreCenter());
+        List<StarSystemAPI> systems = Utils.getNearbyStarSystems(constellation.getLocation(), 15f);
+
+        Vector2f chorna_system_location = Utils.getUnoccupiedLocation(constellation.getLocation(), systems, system, 900f);
+
+        if (chorna_system_location == null) {
+            chorna_system_location = DEFAULT_CHORNA_SYSTEM_LOCATION;
+            system.getLocation().set(chorna_system_location);
+        }
+        else {
+            system.getLocation().set(chorna_system_location);
+            constellation.getSystems().add(system);
+            system.setConstellation(constellation);
+        }
+        Utils.clearHyperspaceNebulaAroundSystem(system);
 
         //Star
         star = system.initStar(
                 "chorna",
                 "star_yellow", //star types located in starsector-core\data\config\planets.json
                 800,
-                -750,
-                -5250,
+                chorna_system_location.x,
+                chorna_system_location.y,
                 600);  //id, type, radius, x coordinate, y coordinate, corona radius
 
         system.setBackgroundTextureFilename("graphics/mod/backgrounds/modbg.jpg");
