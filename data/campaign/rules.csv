@@ -217,4 +217,15 @@ UpdateMemory
 ShowDefaultVisual
 EndConversation","""Yeah, pretty much. With this warship our faction might stand a chance against ongoing and future hostilities. Thanks for your sponsorship for the project.""",,
 "#END BP_Production",,,,,,
+,,,,,,
+# MarketReclaim,,,,,,
+chrn_ reclaim_start,PopulateOptions,"$market.id == ""chorna_starforge_market""
+$postId == ""baseCommander""
+$faction.id != ""player""",,,"chrn_reclaim_test:""I want to have the station back""
+",
+chrn_reclaim_test,DialogOptionSelected,"$option == chrn_reclaim_test
+","TransferMarket chorna_starforge player
+UpdateMemory
+FireAll PopulateOptions","""Sure""",,
+"#END MarketReclaim",,,,,,
 
