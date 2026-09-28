@@ -218,14 +218,65 @@ ShowDefaultVisual
 EndConversation","""Yeah, pretty much. With this warship our faction might stand a chance against ongoing and future hostilities. Thanks for your sponsorship for the project.""",,
 "#END BP_Production",,,,,,
 ,,,,,,
-# MarketReclaim,,,,,,
-chrn_ reclaim_start,PopulateOptions,"$market.id == ""chorna_starforge_market""
-$postId == ""baseCommander""
-$faction.id != ""player""",,,"chrn_reclaim_test:""I want to have the station back""
+# StarforgeReclaim,,,,,,
+chrn_reclaimCommHighlight1,PopulateOptions,"$market.id == ""chorna_starforge_market""
+!$global.chrn_reclaim_StoryHeard
+!$global.chrn_StarforgeReclaimed","SetOptionColor marketCommDir highlight",,,
+chrn_reclaimStart,PopulateOptions,"$market.id == ""chorna_starforge_market""
+$postId == ""stationCommander""
+!$global.chrn_StarforgeReclaimed
+!$global.chrn_reclaim_StoryHeard",,,"chrn_reclaimInit:""I would like to discuss the matter of reclaiming this station as part of former Chorna LLC assets.""
 ",
-chrn_reclaim_test,DialogOptionSelected,"$option == chrn_reclaim_test
+chrn_reclaimRejection,DialogOptionSelected,"$option == chrn_reclaimInit
+$faction.relValue < -0.1","AddTextSmall ""You may need to improve your reputation with the Independents"" highlight
+ShowDefaultVisual
+EndConversation","""No."" - Well, that was rather quick and precise. Perhaps $heOrShe didn't like your hairstyle or maybe even you as whole... ",,
+chrn_reclaimPoliteRejection,DialogOptionSelected,"$option == chrn_reclaimInit
+$faction.relValue > -0.1
+$faction.relValue < 0.25","AddTextSmall ""You may need to improve your reputation with the Independents to at least welcoming"" highlight
+ShowDefaultVisual
+EndConversation","$HeOrShe taps on the Tri-pad, probably looking up the profile of yours. ""You know what? You may have such an opportunity one day, provided that you recommend yourself as a reputable captain. Until then, farewell."" ",,
+chrn_reclaimInit,DialogOptionSelected,"$option == chrn_reclaimInit
+$faction.relValue >= 0.25",,"""Yeah, sure. Let's get straight to business"". It seemed like $heOrShe knows something good about you, as additional checks were not necessary. ""I heard you were employed by Chorna LLC back then..."" - $HeOrShe looks troubled.","1:chrn_reclaimPraise1:""I was the captain of a former merchant fleet.""
+2:chrn_reclaimStory1:It is not a question. Keep silent.",
+chrn_reclaimPraise1,DialogOptionSelected,"$option == chrn_reclaimPraise1","AdjustRepActivePerson 1.0","""So that's where you got your confidence from"". For a moment, $heOrShe smiles.","chrn_reclaimStory1:Continue",
+chrn_reclaimStory1,DialogOptionSelected,"$option == chrn_reclaimStory1",,"""It's a pretty unfortunate story. Teaches you a lesson though. There is no one who wants you to be strong except for yourself. And even then, be careful who you cross the roads with"". $HeOrShe dives deep into their thoughts... There is a lesson here indeed.","chrn_reclaimStory2:""Why is Tri-Tachion in charge of this place?""",
+chrn_reclaimStory2,DialogOptionSelected,"$option == chrn_reclaimStory2",,"You explain that It's not a grand conspiracy that the ones most interested in the downfall of your previous employer were Tri-Tachion. But how come they didn't take control of the starforge themselves?
+
+""And that is the right question."" - You notice that the sadness in the air starts evaporating. ""You see, there was a Hegemony raid during some sort of combat testing activity of Chorna LLC R&D department - this we know for sure. I don't know exactly what they were testing, as we didn't find any clues after we were put in charge of this place.""","chrn_reclaimStory3:Continue",
+chrn_reclaimStory3,DialogOptionSelected,"$option == chrn_reclaimStory3",,"""Some rumours say that the blue guys fed the false data to the Ministry of technological standards about the illegal nature of the new Chorna LLC R&D product, which resulted in mentioned above raid. Well, it comes out naturally that in this case the Hegemony wouldn't seize the starforge for themselves, as it could be used as an excuse to blame them for aggressive imperialistic ambitions and suffocating minor polities by its main geopolitical opponent, the Persean League. This could mitigate the efforts of Hegemony to reunite the Sector somewhat peacefully.""","chrn_reclaimStory4:""And one of the workarounds is to transfer the control over Chorna LLC property to someone else...""",
+chrn_reclaimStory4,DialogOptionSelected,"$option == chrn_reclaimStory4","AdjustRepActivePerson 1.0","""And so they did. There are not many options though. They obviously wouldn't give it to the League or to the Dictate. The Church simply despises the amount of technological sins packed in a station form factor. As for the Tri-Tachion, well... if we imagine that there really was some illegal tech involved in the situation, then it would be simply dumb to give the control over its source to the Tri-Tachion. They probably would rape some alpha cores or something to turn it into another factory of human made horrors.""","chrn_reclaimStory5:""So giving it to the Independents may have even raised their diplomatic power.""",
+chrn_reclaimStory5,DialogOptionSelected,"$option == chrn_reclaimStory5","AdjustRepActivePerson 1.0
+AddTextSmall ""You will have to wait around 2 months for the deal preparations to be made."" highlight
+$global.chrn_reclaim_StoryHeard = true
+$global.chrn_reclaim_DealInProgress = true 10
+ShowDefaultVisual
+EndConversation","""That's for sure. Baikal Daud is not an idiot. As for your request..."" - $HeOrShe takes a pause to tap something on their Tri-pad, then turns back to you: ""We need to make sure that you are on at least favorable terms with the Hegemony, before we can proceed. In the meantime, we will perform an audit to evaluate the price for you and make some other arrangements. This will take about two months. It was a pleasure. Burn bright, captain.""",,
+chrn_reclaimCommHighlight2,PopulateOptions,"$market.id == ""chorna_starforge_market""
+$global.chrn_reclaim_StoryHeard
+!$global.chrn_reclaim_DealInProgress","SetOptionColor marketCommDir highlight",,,
+chrn_reclaimDealStart,PopulateOptions,"$market.id == ""chorna_starforge_market""
+$postId == ""stationCommander""
+$global.chrn_reclaim_StoryHeard
+!$global.chrn_reclaim_DealInProgress",,,"chrn_reclaimDealProceed:""So how is the progress with the agreement on the Starforge?""",
+chrn_reclaimDealHegRejection,DialogOptionSelected,"$option == chrn_reclaimDealProceed
+!IsEnoughRepWithFaction hegemony 0.15
+$faction.relValue >=0.25","AddTextSmall ""You need to be at least welcoming in the eyes of Independents and at least favorable for the Hegemony"" highlight","""As I said earlier, the Hegemony simply will not let us transfer the control over the station to you, if they are not confident in your credibility. Unfortunately, we cannot proceed unless you make yourself at least favorable.""",,
+chrn_reclaimDealIndRejection,DialogOptionSelected,"$option == chrn_reclaimDealProceed
+IsEnoughRepWithFaction hegemony 0.15
+$faction.relValue < 0.25","AddTextSmall ""You need to be at least welcoming in the eyes of Independents and at least favorable for the Hegemony"" highlight","""Well, you have raised your reputation with the Hegemony, but you have managed to worsen your standing with us. Fix this and come back later.""",,
+chrn_reclaimDealRejection,DialogOptionSelected,"$option == chrn_reclaimDealProceed
+!IsEnoughRepWithFaction hegemony 0.15
+$faction.relValue < 0.25","AddTextSmall ""You need to be at least welcoming in the eyes of Independents and at least favorable for the Hegemony"" highlight","""To make this deal happen, you need to improve your standing with the Hegemony, as I said earlier, but this also applies to not falling in our eyes as well. Come back when you fix your reputation. ",,
+chrn_reclaimDealProceed,DialogOptionSelected,"$option == chrn_reclaimDealProceed
+IsEnoughRepWithFaction hegemony 0.15
+$faction.relValue >= 0.25",,"""We have some good news for you """,,
+chrn_reclaimEnd,DialogOptionSelected,"$option == chrn_reclaim_end
 ","TransferMarket chorna_starforge player
+$global.chrn_StarforgeReclaimed = true
 UpdateMemory
-FireAll PopulateOptions","""Sure""",,
-"#END MarketReclaim",,,,,,
+AddTextSmall ""The Chorna starforge is now under your control"" highlight
+ShowDefaultVisual
+EndConversation","""Sure""",,
+"#END StarforgeReclaim",,,,,,
 

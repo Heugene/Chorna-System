@@ -48,7 +48,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
     @Override
     public void onNewGame() {
         sector = Global.getSector();
-
+        Global.getSector().getMemoryWithoutUpdate().set("$chrn_StarforgeReclaimed", startWithAColony);
         SetPlayerFaction();
     }
 
@@ -218,7 +218,8 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         chorna_starforge_market.addCondition(Conditions.OUTPOST);
         chorna_starforge_market.addCondition(Conditions.POPULATION_5);
 
-        chorna_starforge_market.setFactionId(Factions.PLAYER);
+        chorna_starforge_market.setFactionId(factionId);
+        chorna_starforge_market.setPlayerOwned(startWithAColony);
 
         chorna_starforge_market.addIndustry(Industries.POPULATION);
         chorna_starforge_market.addIndustry(Industries.SPACEPORT);
@@ -242,9 +243,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
                 incoming.getWeight().modifyMult("size maxed", 0, "The Chorna Starforge station cannot sustain more people.");
             }
         });
-        
-        chorna_starforge_market.setFactionId(factionId);
-        chorna_starforge_market.setPlayerOwned(startWithAColony);
+
     }
 
     private void CreateIgneaPlanet() {
