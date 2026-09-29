@@ -249,16 +249,21 @@ chrn_reclaimStory4,DialogOptionSelected,"$option == chrn_reclaimStory4","AdjustR
 chrn_reclaimStory5,DialogOptionSelected,"$option == chrn_reclaimStory5","AdjustRepActivePerson 1.0
 AddTextSmall ""You will have to wait around 2 months for the deal preparations to be made."" highlight
 $global.chrn_reclaim_StoryHeard = true
-$global.chrn_reclaim_DealInProgress = true 10
+$global.chrn_reclaim_DealInProgress = true 60
 ShowDefaultVisual
 EndConversation","""That's for sure. Baikal Daud is not an idiot. As for your request..."" - $HeOrShe takes a pause to tap something on their Tri-pad, then turns back to you: ""We need to make sure that you are on at least favorable terms with the Hegemony, before we can proceed. In the meantime, we will perform an audit to evaluate the price for you and make some other arrangements. This will take about two months. It was a pleasure. Burn bright, captain.""",,
 chrn_reclaimCommHighlight2,PopulateOptions,"$market.id == ""chorna_starforge_market""
 $global.chrn_reclaim_StoryHeard
-!$global.chrn_reclaim_DealInProgress","SetOptionColor marketCommDir highlight",,,
+!$global.chrn_reclaim_DealInProgress
+!$global.chrn_StarforgeReclaimed","SetOptionColor marketCommDir highlight",,,
 chrn_reclaimDealStart,PopulateOptions,"$market.id == ""chorna_starforge_market""
 $postId == ""stationCommander""
 $global.chrn_reclaim_StoryHeard
-!$global.chrn_reclaim_DealInProgress",,,"chrn_reclaimDealProceed:""So how is the progress with the agreement on the Starforge?""",
+!$global.chrn_reclaim_DealInProgress","unset $chrn_reclaimBaseIndPortion
+unset $chrn_reclaimBaseHegPortion
+unset $chrn_reclaimCalculatedHegPortion
+unset $chrn_reclaimTotalDealCost
+chrnSetReclaimDealCost",,"chrn_reclaimDealProceed:""So how is the progress with the agreement on the Starforge?""",
 chrn_reclaimDealHegRejection,DialogOptionSelected,"$option == chrn_reclaimDealProceed
 !IsEnoughRepWithFaction hegemony 0.15
 $faction.relValue >=0.25","AddTextSmall ""You need to be at least welcoming in the eyes of Independents and at least favorable for the Hegemony"" highlight","""As I said earlier, the Hegemony simply will not let us transfer the control over the station to you, if they are not confident in your credibility. Unfortunately, we cannot proceed unless you make yourself at least favorable.""",,
@@ -270,13 +275,28 @@ chrn_reclaimDealRejection,DialogOptionSelected,"$option == chrn_reclaimDealProce
 $faction.relValue < 0.25","AddTextSmall ""You need to be at least welcoming in the eyes of Independents and at least favorable for the Hegemony"" highlight","""To make this deal happen, you need to improve your standing with the Hegemony, as I said earlier, but this also applies to not falling in our eyes as well. Come back when you fix your reputation. ",,
 chrn_reclaimDealProceed,DialogOptionSelected,"$option == chrn_reclaimDealProceed
 IsEnoughRepWithFaction hegemony 0.15
-$faction.relValue >= 0.25",,"""We have some good news for you """,,
-chrn_reclaimEnd,DialogOptionSelected,"$option == chrn_reclaim_end
+$faction.relValue >= 0.25","DoCanAffordCheck $global.chrn_reclaimTotalDealCost chrn_reclaimEnd true","""We have some good news for you: the deal terms are ready."" - $heOrShe says and proceeds to inform you about all the intricate details that you missed while smugglings, exploring or bounty hunting during your wait time.
+
+""First of all, there is a base reward of $global.chrn_reclaimBaseIndPortion credits for us for keeping this place in good condition. The second part of your payment covers the risk insurance and goes to the Hegemony. You know, they are pretty cautious after that incident and they wouldn`t mind some extra income to cover some of their enormous military spending."" - $HeOrShe says and makes a brief pause, while drinking a glass of water.
+
+Then, continues: ""The amount, however, is proportional to the risks you may pose to the Hegemony after reclaiming the station. With your current reputation and commission status it is $global.chrn_reclaimCalculatedHegPortion credits. Increasing your reputation with the Hegemony and accepting their commission greatly reduces the payment. You may come later, if you want to lower insurance costs."".
+
+""This brings the total cost of our agreement to $global.chrn_reclaimTotalDealCost credits. So, what is your decision, $playerSirOrMadam?""","chrn_reclaimEnd:Agree to the terms and pay $chrn_reclaimTotalDealCost credits
+chrn_reclaimDealPostpone:Explain that you need some time to think and lower the insurance costs",
+chrn_reclaimDealPostpone,DialogOptionSelected,"$option == chrn_reclaimDealPostpone","AddTextSmall ""You can lower the insurance costs by taking a commission from Hegemony and raising your reputation with it."" highlight
+ShowDefaultVisual
+EndConversation","""Another time then. Burn bright, starfarer!""",,
+chrn_reclaimEnd,DialogOptionSelected,"$option == chrn_reclaimEnd
 ","TransferMarket chorna_starforge player
+AddCredits -$global.chrn_reclaimTotalDealCost
 $global.chrn_StarforgeReclaimed = true
+unset $chrn_reclaimBaseIndPortion
+unset $chrn_reclaimBaseHegPortion
+unset $chrn_reclaimCalculatedHegPortion
+unset $chrn_reclaimTotalDealCost
 UpdateMemory
 AddTextSmall ""The Chorna starforge is now under your control"" highlight
 ShowDefaultVisual
-EndConversation","""Sure""",,
+EndConversation","""Congratulations on your new property!"" $HeOrShe said with unmasked excitement. Is it because of $heOrShe is really glad for you, or is it just pure joy of vanishing responsibilities - it doesn't matter. You have returned what made you proud of your faction once ago. It is your duty to protect it now.",,
 "#END StarforgeReclaim",,,,,,
 
