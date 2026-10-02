@@ -154,6 +154,18 @@
             "locations": [
                      -53,      -47
             ]
+        },
+        {
+            "id": "LB 000",
+            "size": "SMALL",
+            "type": "LAUNCH_BAY",
+            "mount": "HIDDEN",
+            "arc": 0,
+            "angle": 0,
+            "locations": [
+                     -72,       23,
+                     -72,      -23
+            ]
         }
     ],
     "engineSlots": [
