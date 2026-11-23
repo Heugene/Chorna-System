@@ -1,13 +1,12 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 14,
-    "fluxVents": 3,
+    "fluxCapacitors": 12,
+    "fluxVents": 20,
     "goalVariant": true,
     "hullId": "chrn_kramar",
     "hullMods": [
-        "reinforcedhull",
-        "targetingunit",
-        "missleracks"
+        "auxiliary_fuel_tanks",
+        "expanded_cargo_holds"
     ],
     "quality": 0.0,
     "variantId": "chrn_kramar_standard",
@@ -31,7 +30,7 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS 001": "hveldriver"
+                "WS 001": "irautolance"
             }
         },
         {
@@ -45,9 +44,5 @@
                 "WS 002": "vulcan"
             }
         }
-    ],
-    "wings": [
-        "broadsword_wing",
-        "hoplon_wing"
     ]
 }
