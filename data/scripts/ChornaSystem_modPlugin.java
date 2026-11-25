@@ -48,7 +48,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
     @Override
     public void onNewGame() {
         sector = Global.getSector();
-        Global.getSector().getMemoryWithoutUpdate().set("$chrn_StarforgeReclaimed", startWithAColony);
+        sector.getMemoryWithoutUpdate().set("$chrn_StarforgeReclaimed", startWithAColony);
         SetPlayerFaction();
     }
 
@@ -64,6 +64,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         if (startWithAColony) {
             CreateCatherine();
         }
+        SaveChornaStarForgeStationCommanderId();
     }
 
     /**
@@ -244,6 +245,15 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
             }
         });
 
+    }
+
+    private void SaveChornaStarForgeStationCommanderId() {
+        List<PersonAPI> people = chorna_starforge_market.getPeopleCopy();
+        for (PersonAPI person : people) {
+            if (person.getPostId().equals(Ranks.POST_STATION_COMMANDER)) {
+                sector.getMemoryWithoutUpdate().set("$chrn_starforgeCommanderId", person.getId());
+            }
+        }
     }
 
     private void CreateIgneaPlanet() {

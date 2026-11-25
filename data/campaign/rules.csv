@@ -221,7 +221,11 @@ EndConversation","""Yeah, pretty much. With this warship our faction might stand
 # StarforgeReclaim,,,,,,
 chrn_reclaimCommHighlight1,PopulateOptions,"$market.id == ""chorna_starforge_market""
 !$global.chrn_reclaim_StoryHeard
-!$global.chrn_StarforgeReclaimed","SetOptionColor marketCommDir highlight",,,
+!$global.chrn_StarforgeReclaimed
+!$global.chrn_blockCommsAutoOpen","chrnDisplayPersonsInterestInTalking chorna_starforge_market $global.chrn_starforgeCommanderId true
+$global.chrn_blockCommsAutoOpen = true 1
+UpdateMemory
+OpenCommDirectory",,,
 chrn_reclaimStart,PopulateOptions,"$market.id == ""chorna_starforge_market""
 $postId == ""stationCommander""
 !$global.chrn_StarforgeReclaimed
@@ -240,7 +244,7 @@ chrn_reclaimInit,DialogOptionSelected,"$option == chrn_reclaimInit
 $faction.relValue >= 0.25",,"""Yeah, sure. Let's get straight to business"". It seemed like $heOrShe knows something good about you, as additional checks were not necessary. ""I heard you were employed by Chorna LLC back then..."" - $HeOrShe looks troubled.","1:chrn_reclaimPraise1:""I was the captain of a former merchant fleet.""
 2:chrn_reclaimStory1:It is not a question. Keep silent.",
 chrn_reclaimPraise1,DialogOptionSelected,"$option == chrn_reclaimPraise1","AdjustRepActivePerson 1.0","""So that's where you got your confidence from"". For a moment, $heOrShe smiles.","chrn_reclaimStory1:Continue",
-chrn_reclaimStory1,DialogOptionSelected,"$option == chrn_reclaimStory1",,"""It's a pretty unfortunate story. Teaches you a lesson though. There is no one who wants you to be strong except for yourself. And even then, be careful who you cross the roads with"". $HeOrShe dives deep into their thoughts... There is a lesson here indeed.","chrn_reclaimStory2:""Why is Tri-Tachion in charge of this place?""",
+chrn_reclaimStory1,DialogOptionSelected,"$option == chrn_reclaimStory1",,"""It's a pretty unfortunate story. Teaches you a lesson though. There is no one who wants you to be strong except for yourself. And even then, be careful who you cross the roads with"". $HeOrShe dives deep into their thoughts... There is a lesson here indeed.","chrn_reclaimStory2:""Why isn`t Tri-Tachion in charge of this place?""",
 chrn_reclaimStory2,DialogOptionSelected,"$option == chrn_reclaimStory2",,"You explain that It's not a grand conspiracy that the ones most interested in the downfall of your previous employer were Tri-Tachion. But how come they didn't take control of the starforge themselves?
 
 ""And that is the right question."" - You notice that the sadness in the air starts evaporating. ""You see, there was a Hegemony raid during some sort of combat testing activity of Chorna LLC R&D department - this we know for sure. I don't know exactly what they were testing, as we didn't find any clues after we were put in charge of this place.""","chrn_reclaimStory3:Continue",
@@ -250,16 +254,22 @@ chrn_reclaimStory5,DialogOptionSelected,"$option == chrn_reclaimStory5","AdjustR
 AddTextSmall ""You will have to wait around 2 months for the deal preparations to be made."" highlight
 $global.chrn_reclaim_StoryHeard = true
 $global.chrn_reclaim_DealInProgress = true 60
+chrnDisplayPersonsInterestInTalking chorna_starforge_market $global.chrn_starforgeCommanderId false
 ShowDefaultVisual
 EndConversation","""That's for sure. Baikal Daud is not an idiot. As for your request..."" - $HeOrShe takes a pause to tap something on their Tri-pad, then turns back to you: ""We need to make sure that you are on at least favorable terms with the Hegemony, before we can proceed. In the meantime, we will perform an audit to evaluate the price for you and make some other arrangements. This will take about two months. It was a pleasure. Burn bright, captain.""",,
 chrn_reclaimCommHighlight2,PopulateOptions,"$market.id == ""chorna_starforge_market""
 $global.chrn_reclaim_StoryHeard
 !$global.chrn_reclaim_DealInProgress
-!$global.chrn_StarforgeReclaimed","SetOptionColor marketCommDir highlight",,,
+!$global.chrn_StarforgeReclaimed
+!$global.chrn_blockCommsAutoOpen","chrnDisplayPersonsInterestInTalking chorna_starforge_market $global.chrn_starforgeCommanderId true
+$global.chrn_blockCommsAutoOpen = true 1
+UpdateMemory
+OpenCommDirectory",,,
 chrn_reclaimDealStart,PopulateOptions,"$market.id == ""chorna_starforge_market""
 $postId == ""stationCommander""
 $global.chrn_reclaim_StoryHeard
-!$global.chrn_reclaim_DealInProgress","unset $chrn_reclaimBaseIndPortion
+!$global.chrn_reclaim_DealInProgress
+!$global.chrn_StarforgeReclaimed","unset $chrn_reclaimBaseIndPortion
 unset $chrn_reclaimBaseHegPortion
 unset $chrn_reclaimCalculatedHegPortion
 unset $chrn_reclaimTotalDealCost
@@ -294,6 +304,7 @@ unset $chrn_reclaimBaseIndPortion
 unset $chrn_reclaimBaseHegPortion
 unset $chrn_reclaimCalculatedHegPortion
 unset $chrn_reclaimTotalDealCost
+chrnDisplayPersonsInterestInTalking chorna_starforge_market $global.chrn_starforgeCommanderId false
 UpdateMemory
 AddTextSmall ""The Chorna starforge is now under your control"" highlight
 ShowDefaultVisual
