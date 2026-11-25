@@ -6,25 +6,14 @@ import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.characters.*;
 import com.fs.starfarer.api.impl.campaign.ids.*;
 
-//for planets
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
-import com.fs.starfarer.api.campaign.econ.EconomyAPI;
-
-//for system generation
-import com.fs.starfarer.api.impl.campaign.procgen.Constellation;
-import com.fs.starfarer.api.impl.campaign.procgen.StarAge;
-import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
-import com.fs.starfarer.api.util.Misc;
-import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
-import java.util.Random;
 import java.util.List;
 
 public class ChornaSystem_modPlugin extends BaseModPlugin {
 
     public static SectorAPI sector;
-    private static StarSystemAPI system;
 
     public static boolean startWithAColony = true;
 
@@ -33,19 +22,15 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
     @Override
     public void onNewGame() {
         sector = Global.getSector();
-        ChornaStarSystemCreator.SetSector(sector);
-
-        system = sector.getStarSystem("Chorna");
-
-        ChornaStarSystemCreator.SetStartWithAColony(startWithAColony);
         sector.getMemoryWithoutUpdate().set("$chrn_StarforgeReclaimed", startWithAColony);
-
         SetPlayerFaction();
     }
 
     @Override
     public void onNewGameAfterProcGen()
     {
+        ChornaStarSystemCreator.SetSector(sector);
+        ChornaStarSystemCreator.SetStartWithAColony(startWithAColony);
         ChornaStarSystemCreator.GenerateChornaSystem();
     }
 
@@ -84,11 +69,11 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
     private void CreateCatherine() {
         ImportantPeopleAPI importantPeople = Global.getSector().getImportantPeople();
 
-        MarketAPI market = Global.getSector().getEconomy().getMarket("chorna_starforge_market");
+        MarketAPI market = Global.getSector().getEconomy().getMarket(chrnIds.chornaStarforgeMarketId);
         if (market != null) {
             corporatePrincess = Global.getFactory().createPerson();
-            corporatePrincess.setId("chrn_Catherine");
-            corporatePrincess.setFaction("tritachyon");
+            corporatePrincess.setId(chrnIds.catherineId);
+            corporatePrincess.setFaction(Factions.TRITACHYON);
             corporatePrincess.setGender(FullName.Gender.FEMALE);
             corporatePrincess.setPostId(Ranks.POST_SPECIAL_AGENT);
             corporatePrincess.setRankId(Ranks.SPACE_COMMANDER);
@@ -132,7 +117,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
     }
 
     private void SaveChornaStarForgeStationCommanderId() {
-        MarketAPI chornaStarforgeMarket = Global.getSector().getEconomy().getMarket("chorna_starforge_market");
+        MarketAPI chornaStarforgeMarket = Global.getSector().getEconomy().getMarket(chrnIds.chornaStarforgeMarketId);
         List<PersonAPI> people = chornaStarforgeMarket.getPeopleCopy();
         for (PersonAPI person : people) {
             if (person.getPostId().equals(Ranks.POST_STATION_COMMANDER)) {
