@@ -18,7 +18,7 @@ public class chrnDisplayPersonsInterestInTalking extends BaseCommandPlugin {
 
         String MarketId = params.get(0).getString(memoryMap);
         String PersonId = params.get(1).getString(memoryMap);
-        Boolean flag = params.get(2).getBoolean(memoryMap);
+        boolean flag = params.get(2).getBoolean(memoryMap);
 
         List<PersonAPI> peopleOfGivenMarket = Global.getSector().getEconomy().getMarket(MarketId).getPeopleCopy();
 

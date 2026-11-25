@@ -3,14 +3,12 @@ package data.scripts;
 import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
-import com.fs.starfarer.api.campaign.econ.MarketImmigrationModifier;
 import com.fs.starfarer.api.characters.*;
 import com.fs.starfarer.api.impl.campaign.ids.*;
 
 //for planets
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.EconomyAPI;
-import com.fs.starfarer.api.impl.campaign.population.PopulationComposition;
 
 //for system generation
 import com.fs.starfarer.api.impl.campaign.procgen.Constellation;
@@ -32,18 +30,8 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
     public static PersonAPI corporatePrincess;
     public static MarketAPI chorna_starforge_market;
     private static SectorAPI sector;
-    private static FactionAPI playerFaction;
     private static StarSystemAPI system;
     private static PlanetAPI star;
-
-    enum SystemVariant {
-        StandardFull,
-        StandardSemiRandom,
-        TwinPlanetFull,
-        TwinPlanetSemiRandom
-    }
-
-    private static SystemVariant systemVariant;
 
     @Override
     public void onNewGame() {
@@ -126,7 +114,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
 
     private void SetPlayerFaction() {
         //Player Faction
-        playerFaction = sector.getPlayerFaction();
+        FactionAPI playerFaction = sector.getPlayerFaction();
         playerFaction.setFactionLogoOverride("graphics/factions/custom/player_logo05_flag.png");
         playerFaction.setFactionCrestOverride("graphics/factions/custom/player_logo05_crest.png");
         playerFaction.setDisplayNameOverride("Chorna LLC");
@@ -236,13 +224,9 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         EconomyAPI globalEconomy = Global.getSector().getEconomy();
         globalEconomy.addMarket(chorna_starforge_market, false);
 
-        chorna_starforge_market.addImmigrationModifier(new MarketImmigrationModifier() {
-            @Override
-            public void modifyIncoming(MarketAPI market, PopulationComposition incoming) {
-
-                incoming.add("size maxed", 0);
-                incoming.getWeight().modifyMult("size maxed", 0, "The Chorna Starforge station cannot sustain more people.");
-            }
+        chorna_starforge_market.addImmigrationModifier((market, incoming) -> {
+            incoming.add("size maxed", 0);
+            incoming.getWeight().modifyMult("size maxed", 0, "The Chorna Starforge station cannot sustain more people.");
         });
 
     }
@@ -299,7 +283,7 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         SectorEntityToken yaroslava_mirror5 = system.addCustomEntity("yaroslava_mirror5", "Yaroslava Stellar Mirror Gamma", "stellar_mirror", "neutral");
         yaroslava_mirror1.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), 180 - 60, 400, 366);
         yaroslava_mirror2.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), 180 - 30, 400, 366);
-        yaroslava_mirror3.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), 180 - 0, 400, 366);
+        yaroslava_mirror3.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), 180, 400, 366);
         yaroslava_mirror4.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), 180 + 30, 400, 366);
         yaroslava_mirror5.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), 180 + 60, 400, 366);
         yaroslava_mirror1.setCustomDescriptionId("stellar_mirror");
@@ -312,9 +296,9 @@ public class ChornaSystem_modPlugin extends BaseModPlugin {
         SectorEntityToken yaroslava_shade1 = system.addCustomEntity("yaroslava_mirror1", "Yaroslava Stellar Shade Delta", "stellar_shade", "neutral");
         SectorEntityToken yaroslava_shade2 = system.addCustomEntity("yaroslava_mirror3", "Yaroslava Stellar Shade Epsilon", "stellar_shade", "neutral");
         SectorEntityToken yaroslava_shade3 = system.addCustomEntity("yaroslava_mirror5", "Yaroslava Stellar Shade Omega", "stellar_shade", "neutral");
-        yaroslava_shade1.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), 0 - 26, 390, 366);
-        yaroslava_shade2.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), 0 + 0, 425, 366);
-        yaroslava_shade3.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), 0 + 26, 390, 366);
+        yaroslava_shade1.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), -26, 390, 366);
+        yaroslava_shade2.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), 0, 425, 366);
+        yaroslava_shade3.setCircularOrbitPointingDown(system.getEntityById("yaroslava"), 26, 390, 366);
         yaroslava_shade1.setCustomDescriptionId("stellar_shade");
         yaroslava_shade2.setCustomDescriptionId("stellar_shade");
         yaroslava_shade3.setCustomDescriptionId("stellar_shade");

@@ -5,10 +5,10 @@ import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Stats;
 public class BattlecarrierLogistics extends BaseHullMod {
-    public static float ALL_FIGHTER_COST_PERCENT = -40.0F;
-    public static float ALL_BOMBER_AND_SUPPORT_COST_PERCENT = 80.0F;
+    public static final float ALL_FIGHTER_COST_PERCENT = -40.0F;
+    public static final float ALL_BOMBER_AND_SUPPORT_COST_PERCENT = 80.0F;
 
-    public static float REPLACEMENT_TIME_PERCENT = -20.0F;
+    public static final float REPLACEMENT_TIME_PERCENT = -20.0F;
 
 
     public BattlecarrierLogistics() {

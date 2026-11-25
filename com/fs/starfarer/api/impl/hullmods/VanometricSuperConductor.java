@@ -10,7 +10,7 @@ import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
 
 public class VanometricSuperConductor extends BaseHullMod {
-    public static float FLUX_DISSIPATION_FLAT = 600.0F;
+    public static final float FLUX_DISSIPATION_FLAT = 600.0F;
 
     public VanometricSuperConductor() {
     }

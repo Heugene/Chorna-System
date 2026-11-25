@@ -232,7 +232,6 @@ public class AThreatToIndependence extends HubMissionWithBarEvent implements Fle
     @Override
     public void addDescriptionForNonEndStage(TooltipMakerAPI info, float width, float height) {
         float opad = 10f;
-        Color h = Misc.getHighlightColor();
         if (currentStage == Stage.FIND_CLUE) {
             info.addPara("Look for some clues about the location of the bastard that told Hegemony about Chorna LLC's new prototype testing place in the " +
                     system.getNameWithLowercaseTypeShort() + ".", opad);
@@ -249,7 +248,6 @@ public class AThreatToIndependence extends HubMissionWithBarEvent implements Fle
     // short description in popups and the intel entry
     @Override
     public boolean addNextStepText(TooltipMakerAPI info, Color tc, float pad) {
-        Color h = Misc.getHighlightColor();
         if (currentStage == Stage.FIND_CLUE) {
             info.addPara("Look for clues in the " +
                     system.getNameWithLowercaseTypeShort(), tc, pad);
