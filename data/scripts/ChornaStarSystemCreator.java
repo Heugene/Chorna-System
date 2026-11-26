@@ -105,22 +105,12 @@ public class ChornaStarSystemCreator {
         chorna_starforge_market.setSurveyLevel(MarketAPI.SurveyLevel.FULL);
         chorna_starforge_market.getTariff().modifyFlat("generator", 0.25f);
 
-        chorna_starforge_market.setPlanetConditionMarketOnly(false);
-        chorna_starforge_market.addCondition(Conditions.HABITABLE);
-        chorna_starforge_market.addCondition(Conditions.NO_ATMOSPHERE);
-        chorna_starforge_market.addCondition(Conditions.VERY_HOT);
-        chorna_starforge_market.addCondition(Conditions.OUTPOST);
-        chorna_starforge_market.addCondition(Conditions.POPULATION_5);
+        SetStarforgeConditions(chorna_starforge_market);
 
         chorna_starforge_market.setFactionId(factionId);
         chorna_starforge_market.setPlayerOwned(startWithAColony);
 
-        chorna_starforge_market.addIndustry(Industries.POPULATION);
-        chorna_starforge_market.addIndustry(Industries.SPACEPORT);
-        chorna_starforge_market.addIndustry(Industries.STARFORTRESS_HIGH);
-        chorna_starforge_market.addIndustry(Industries.MILITARYBASE);
-        chorna_starforge_market.addIndustry(Industries.HEAVYINDUSTRY);
-        chorna_starforge_market.addIndustry(Industries.REFINING);
+        SetStarforgeIndustries(chorna_starforge_market);
 
         chorna_starforge_market.addSubmarket(Submarkets.SUBMARKET_STORAGE);
         chorna_starforge_market.addSubmarket(Submarkets.SUBMARKET_BLACK);
@@ -137,6 +127,24 @@ public class ChornaStarSystemCreator {
                 incoming.getWeight().modifyMult("size maxed", 0, "The Chorna Starforge station cannot sustain more people.");
             }
         });
+    }
+
+    private static void SetStarforgeIndustries(MarketAPI chorna_starforge_market) {
+        chorna_starforge_market.addIndustry(Industries.POPULATION);
+        chorna_starforge_market.addIndustry(Industries.SPACEPORT);
+        chorna_starforge_market.addIndustry(Industries.STARFORTRESS_HIGH);
+        chorna_starforge_market.addIndustry(Industries.MILITARYBASE);
+        chorna_starforge_market.addIndustry(Industries.HEAVYINDUSTRY);
+        chorna_starforge_market.addIndustry(Industries.REFINING);
+    }
+
+    private static void SetStarforgeConditions(MarketAPI chorna_starforge_market) {
+        chorna_starforge_market.setPlanetConditionMarketOnly(false);
+        chorna_starforge_market.addCondition(Conditions.HABITABLE);
+        chorna_starforge_market.addCondition(Conditions.NO_ATMOSPHERE);
+        chorna_starforge_market.addCondition(Conditions.VERY_HOT);
+        chorna_starforge_market.addCondition(Conditions.OUTPOST);
+        chorna_starforge_market.addCondition(Conditions.POPULATION_5);
     }
 
     private static void CreateChornaGate() {
@@ -161,7 +169,10 @@ public class ChornaStarSystemCreator {
         iskemar.getSpec().setTexture(Global.getSettings().getSpriteName("planets", "mod_iskemar")); //graphics\mod\planets\mod_iskemar.jpg
         iskemar.applySpecChanges();
 
-        // Iskemar Conditions
+        SetIskemarConditions(iskemar);
+    }
+
+    private static void SetIskemarConditions(PlanetAPI iskemar) {
         MarketAPI iskemar_market = Global.getFactory().createMarket(chrnIds.iskemarMarket, iskemar.getName(), 0);
         iskemar_market.setPlanetConditionMarketOnly(true);
         iskemar_market.addCondition(Conditions.WATER_SURFACE);
@@ -184,35 +195,13 @@ public class ChornaStarSystemCreator {
         yaroslava.getSpec().setTexture(Global.getSettings().getSpriteName("planets", "mod_yaroslava")); //graphics\mod\planets\mod_yaroslava.jpg
         yaroslava.applySpecChanges();
 
-        // Yaroslava mirror system
-        SectorEntityToken yaroslava_mirror1 = system.addCustomEntity("yaroslava_mirror1", "Yaroslava Stellar Mirror Alpha", Entities.STELLAR_MIRROR, "neutral");
-        SectorEntityToken yaroslava_mirror2 = system.addCustomEntity("yaroslava_mirror2", "Yaroslava Stellar Mirror Beta", Entities.STELLAR_MIRROR, "neutral");
-        SectorEntityToken yaroslava_mirror3 = system.addCustomEntity("yaroslava_mirror3", "Yaroslava Stellar Mirror Gamma", Entities.STELLAR_MIRROR, "neutral");
-        SectorEntityToken yaroslava_mirror4 = system.addCustomEntity("yaroslava_mirror4", "Yaroslava Stellar Mirror Delta", Entities.STELLAR_MIRROR, "neutral");
-        SectorEntityToken yaroslava_mirror5 = system.addCustomEntity("yaroslava_mirror5", "Yaroslava Stellar Mirror Epsilon", Entities.STELLAR_MIRROR, "neutral");
-        yaroslava_mirror1.setCircularOrbitPointingDown(system.getEntityById(chrnIds.yaroslavaId), 180 - 60, 400, 366);
-        yaroslava_mirror2.setCircularOrbitPointingDown(system.getEntityById(chrnIds.yaroslavaId), 180 - 30, 400, 366);
-        yaroslava_mirror3.setCircularOrbitPointingDown(system.getEntityById(chrnIds.yaroslavaId), 180, 400, 366);
-        yaroslava_mirror4.setCircularOrbitPointingDown(system.getEntityById(chrnIds.yaroslavaId), 180 + 30, 400, 366);
-        yaroslava_mirror5.setCircularOrbitPointingDown(system.getEntityById(chrnIds.yaroslavaId), 180 + 60, 400, 366);
-        yaroslava_mirror1.setCustomDescriptionId(Entities.STELLAR_MIRROR);
-        yaroslava_mirror2.setCustomDescriptionId(Entities.STELLAR_MIRROR);
-        yaroslava_mirror3.setCustomDescriptionId(Entities.STELLAR_MIRROR);
-        yaroslava_mirror4.setCustomDescriptionId(Entities.STELLAR_MIRROR);
-        yaroslava_mirror5.setCustomDescriptionId(Entities.STELLAR_MIRROR);
+        SpawnStellarEntities(yaroslava, StellarEntityType.Mirror, new String[]{ "Alpha", "Beta", "Gamma", "Delta", "Epsilon" }, 120, 240, 400, 366 );
+        SpawnStellarEntities(yaroslava, StellarEntityType.Shade, new String[]{ "Zeta", "Eta", "Theta" }, -26, 26, 400, 366);
 
-        // Yaroslava shade system
-        SectorEntityToken yaroslava_shade1 = system.addCustomEntity("yaroslava_shade1", "Yaroslava Stellar Shade Zeta", Entities.STELLAR_SHADE, "neutral");
-        SectorEntityToken yaroslava_shade2 = system.addCustomEntity("yaroslava_shade2", "Yaroslava Stellar Shade Eta", Entities.STELLAR_SHADE, "neutral");
-        SectorEntityToken yaroslava_shade3 = system.addCustomEntity("yaroslava_shade3", "Yaroslava Stellar Shade Theta", Entities.STELLAR_SHADE, "neutral");
-        yaroslava_shade1.setCircularOrbitPointingDown(system.getEntityById(chrnIds.yaroslavaId), -26, 390, 366);
-        yaroslava_shade2.setCircularOrbitPointingDown(system.getEntityById(chrnIds.yaroslavaId), 0, 425, 366);
-        yaroslava_shade3.setCircularOrbitPointingDown(system.getEntityById(chrnIds.yaroslavaId), 26, 390, 366);
-        yaroslava_shade1.setCustomDescriptionId(Entities.STELLAR_SHADE);
-        yaroslava_shade2.setCustomDescriptionId(Entities.STELLAR_SHADE);
-        yaroslava_shade3.setCustomDescriptionId(Entities.STELLAR_SHADE);
+        SetYaroslavaConditions(yaroslava);
+    }
 
-        // Yaroslava Conditions
+    private static void SetYaroslavaConditions(PlanetAPI yaroslava) {
         MarketAPI yaroslava_market = Global.getFactory().createMarket(chrnIds.yaroslavaMarketId, yaroslava.getName(), 0);
         yaroslava_market.setPlanetConditionMarketOnly(true);
         yaroslava_market.addCondition(Conditions.HABITABLE);
@@ -228,6 +217,41 @@ public class ChornaStarSystemCreator {
         yaroslava_market.addCondition(Conditions.REGIONAL_CAPITAL);
         yaroslava_market.setPrimaryEntity(yaroslava);
         yaroslava.setMarket(yaroslava_market);
+    }
+
+    private static void SpawnStellarEntities(SectorEntityToken orbitCenter, StellarEntityType entityType, String[] idNames, float angleMin, float angleMax, float orbitRadius, float orbitDays) {
+        SectorEntityToken newEntity;
+
+        String _entityType = Entities.STELLAR_MIRROR;
+        switch (entityType) {
+            case Shade: {
+                _entityType = Entities.STELLAR_SHADE;
+            }
+            break;
+            case Mirror: {
+                _entityType = Entities.STELLAR_MIRROR;
+            }
+        }
+        String _entityTypeShort = _entityType.split("_")[1];
+        String _entityTypeShortCapitalLetter = _entityTypeShort.substring(0, 1).toUpperCase() + _entityTypeShort.substring(1);
+
+        String newEntityId = orbitCenter.getName().toLowerCase() + "_" + _entityTypeShort;
+        String newEntityName = orbitCenter.getName() + " Stellar " + _entityTypeShortCapitalLetter + " ";
+
+        float sectorAngle = Math.abs(angleMax - angleMin);
+        float angleStep = sectorAngle / idNames.length;
+        float currentAngle = angleMin;
+        for (int i = 0; i < idNames.length; i++){
+            newEntity = system.addCustomEntity(newEntityId + (i + 1), newEntityName + idNames[i], _entityType, "neutral");
+            newEntity.setCircularOrbitPointingDown(orbitCenter, currentAngle, orbitRadius, orbitDays);
+            newEntity.setCustomDescriptionId(_entityType);
+            currentAngle += angleStep;
+        }
+    }
+
+    enum StellarEntityType {
+        Mirror,
+        Shade
     }
 
     private static void GenerateExtraEntities() {
