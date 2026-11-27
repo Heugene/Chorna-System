@@ -81,7 +81,7 @@ public class ChornaStarSystemCreator {
     private static void CreateChornaStar(Vector2f chorna_system_location) {
         star = system.initStar(
                 chrnIds.chornaSystemStarId,
-                StarTypes.YELLOW, //star types located in starsector-core\data\config\planets.json
+                PickFrom(StarTypes.YELLOW, StarTypes.ORANGE), //star types located in starsector-core\data\config\planets.json
                 800,
                 chorna_system_location.x,
                 chorna_system_location.y,
@@ -89,6 +89,11 @@ public class ChornaStarSystemCreator {
 
         system.setBackgroundTextureFilename("graphics/mod/backgrounds/modbg.jpg");
         system.setLightColor(new Color(255, 220, 190)); // light color in entire system, affects all entities
+    }
+
+    private static String PickFrom(String ... options) {
+        Random rand = new Random();
+        return options[rand.nextInt(options.length)];
     }
 
     private static void CreateChornaStarforge() {
@@ -178,12 +183,26 @@ public class ChornaStarSystemCreator {
         iskemar_market.addCondition(Conditions.WATER_SURFACE);
         iskemar_market.addCondition(Conditions.HABITABLE);
         iskemar_market.addCondition(Conditions.TECTONIC_ACTIVITY);
-        iskemar_market.addCondition(Conditions.MILD_CLIMATE);
-        iskemar_market.addCondition(Conditions.ORE_MODERATE);
-        iskemar_market.addCondition(Conditions.VOLATILES_DIFFUSE);
+        iskemar_market.addCondition(PickFrom(
+                Conditions.MILD_CLIMATE,
+                Conditions.EXTREME_WEATHER,
+                Conditions.POOR_LIGHT
+        ));
+        iskemar_market.addCondition(PickFrom(
+                Conditions.ORE_MODERATE,
+                Conditions.ORE_ABUNDANT,
+                Conditions.ORE_RICH));
+        iskemar_market.addCondition(PickFrom(
+                Conditions.VOLATILES_TRACE,
+                Conditions.VOLATILES_DIFFUSE,
+                Conditions.VOLATILES_ABUNDANT
+        ));
         iskemar_market.addCondition(Conditions.RARE_ORE_ABUNDANT);
-        iskemar_market.addCondition(Conditions.ORGANICS_PLENTIFUL);
-        iskemar_market.addCondition(Conditions.POOR_LIGHT);
+        iskemar_market.addCondition(PickFrom(
+                Conditions.ORGANICS_COMMON,
+                Conditions.ORGANICS_ABUNDANT,
+                Conditions.ORGANICS_PLENTIFUL
+        ));
         iskemar_market.setPrimaryEntity(iskemar);
         iskemar.setMarket(iskemar_market);
     }
@@ -205,16 +224,33 @@ public class ChornaStarSystemCreator {
         MarketAPI yaroslava_market = Global.getFactory().createMarket(chrnIds.yaroslavaMarketId, yaroslava.getName(), 0);
         yaroslava_market.setPlanetConditionMarketOnly(true);
         yaroslava_market.addCondition(Conditions.HABITABLE);
-        yaroslava_market.addCondition(Conditions.TECTONIC_ACTIVITY);
         yaroslava_market.addCondition(Conditions.HOT);
-        yaroslava_market.addCondition(Conditions.MILD_CLIMATE);
-        yaroslava_market.addCondition(Conditions.FARMLAND_BOUNTIFUL);  //planet conditions located in: starsector-core\data\campaign\market_conditions.csv
-        yaroslava_market.addCondition(Conditions.ORE_MODERATE);
+        yaroslava_market.addCondition(Conditions.TECTONIC_ACTIVITY);
+        yaroslava_market.addCondition(PickFrom(
+                Conditions.FARMLAND_ADEQUATE,
+                Conditions.FARMLAND_RICH,
+                Conditions.FARMLAND_BOUNTIFUL
+                ));  //planet conditions located in: starsector-core\data\campaign\market_conditions.csv
+        yaroslava_market.addCondition(PickFrom(
+                Conditions.ORE_MODERATE,
+                Conditions.ORE_ABUNDANT,
+                Conditions.ORE_RICH
+        ));
         yaroslava_market.addCondition(Conditions.RUINS_VAST);
-        yaroslava_market.addCondition(Conditions.ORGANICS_PLENTIFUL);
+        yaroslava_market.addCondition(PickFrom(
+                Conditions.ORGANICS_ABUNDANT,
+                Conditions.ORGANICS_PLENTIFUL
+        ));
+        yaroslava_market.addCondition(PickFrom(
+                Conditions.MILD_CLIMATE,
+                Conditions.RARE_ORE_SPARSE,
+                Conditions.RARE_ORE_MODERATE,
+                Conditions.LOW_GRAVITY,
+                Conditions.INIMICAL_BIOSPHERE
+
+        ));
         yaroslava_market.addCondition(Conditions.POOR_LIGHT);
         yaroslava_market.addCondition(Conditions.SOLAR_ARRAY);
-        yaroslava_market.addCondition(Conditions.REGIONAL_CAPITAL);
         yaroslava_market.setPrimaryEntity(yaroslava);
         yaroslava.setMarket(yaroslava_market);
     }
@@ -255,9 +291,10 @@ public class ChornaStarSystemCreator {
     }
 
     private static void GenerateExtraEntities() {
-        SpawnCoronalHypershunt();
-
         Random rand = new Random();
+        if (rand.nextInt(100) < 19) {
+            SpawnCoronalHypershunt();
+        }
         if(rand.nextInt(100) < 49) {
             SpawnNavBuoy();
         }
@@ -305,7 +342,7 @@ public class ChornaStarSystemCreator {
     private static void SpawnCoronalHypershunt() {
         SectorEntityToken coronalTap = system.addCustomEntity(
                 chrnIds.hypershuntId,
-                "Coronal Hypershunt",
+                "Anomalous Coronal Hypershunt",
                 Entities.CORONAL_TAP,  //custom entity types located in: starsector-core\data\config\custom_entities.json
                 "neutral");
         coronalTap.setCircularOrbitPointingDown(star, 180, 1200, 500); //focus, angle, orbit radius, orbit days
